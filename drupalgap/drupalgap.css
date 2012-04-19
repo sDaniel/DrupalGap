@@ -11,8 +11,8 @@ fieldset {
 	border: 1px solid black;
 }
 fieldset legend {
-	font-style: bold;
+	font-weight: bold;
 }
 label {
-	font-style: bold;
+	font-weight: bold;
 }
