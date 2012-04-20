@@ -13,7 +13,7 @@ $(document).ready(function() {
 	drupalgap_settings_load();
 	
 	if (!drupalgap_settings.site_path) {
-		// If the app doesn't have a default site path, send user to welcome page.
+		// The app doesn't have a default site path, send user to welcome page.
 		$.mobile.changePage("drupalgap/pages/welcome.html", { transition: "fade"});
 	}
 	else {
