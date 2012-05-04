@@ -7,6 +7,5 @@ cordova-1.6.0.js
 
 .DS_Store
 
-jquery/jquery.mobile-1.1.0.min.css
-
-jquery/jquery.mobile-1.1.0.min.js
+jquery/*
+drupalgap/pages/home.html
