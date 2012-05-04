@@ -3,6 +3,11 @@
  *
  */
 $('#drupalgap_page_user_register').live('pageshow',function(){
+    /*
+    x_pos= 0;
+    y_pos= 0;
+    $('#info_register_username').popup('open', x_pos, y_pos);
+    */
   try {
 	    if (drupalgap_user.uid != 0) {
           alert("Already logged in!");
@@ -112,3 +117,12 @@ $('#drupalgap_user_register_submit').live('click',function() {
   return false; // stop the click from executing any further
   
 });
+
+
+/*
+$(document).ready(function() {
+    
+    $('#info_register_username').css("background-color","green"); 
+    
+    //$('#info_register_username').popup('open', x_pos, y_pos);
+});*/

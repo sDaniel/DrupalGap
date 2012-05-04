@@ -1,20 +1,23 @@
 <div data-role="page" id="drupalgap_page_user_login">
   <div data-role="header">
-  	<a href="dashboard.html" data-icon="home" class="ui-btn-left">Home</a>
     <h1>Login</h1>
   </div><!-- /header -->
   <div data-role="content" class='content'>
   	<div id='drupalgap_page_user_login_messages' class='messages'></div>
     <div>
-      <label for="drupalgap_user_login_name">Username</label>
+      <label for="drupalgap_user_login_name">Benutzername</label>
       <input type="text" id="drupalgap_user_login_name" />
     </div>
     <div>
-      <label for="drupalgap_user_login_pass">Password</label>
+      <label for="drupalgap_user_login_pass">Passwort</label>
       <input type="password" id="drupalgap_user_login_pass" />
     </div>
     <fieldset>
       <div><button type="button" data-theme="b" id="drupalgap_user_login_submit">Login</button></div>
     </fieldset>
+    <div>
+    	<h3>Noch nicht registriert?</h3>
+    	<p><a href="user_register.html" data-role="button" id="drupalgap_button_register">Registrierung</a></p>
+    </div>
   </div><!-- /content -->
 </div><!-- /page -->
