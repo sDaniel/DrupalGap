@@ -29,17 +29,17 @@ $('#drupalgap_user_register_submit').live('click',function() {
 	  
 	  // Grab name and validate it.
 	  var name = $('#drupalgap_user_register_name').val();
-	  if (!name) { alert('Bitte geben Sie Ihren Benutzernamen ein.'); return false; }
+	  if (!name) { alert('Please enter your user name.'); return false; }
 	  
 	  // Grab mail and validate it.
 	  var mail = $('#drupalgap_user_register_mail').val();
-	  if (!mail) { alert('Bitte geben Sie Ihre E-Mail Adresse ein.'); return false; }
+	  if (!mail) { alert('Please enter your e-mail address.'); return false; }
 	  
 	  // Grab passwords, compare and validate. 
 	  var pass = $('#drupalgap_user_register_pass').val();
-	  if (!pass) { alert('Bitte Passwort eingben.'); return false; }
+	  if (!pass) { alert('Please enter your password.'); return false; }
 	  var pass2 = $('#drupalgap_user_register_confirm_pass').val();
-	  if (!pass2) { alert('Bitte Passwort bestätigen.'); return false; }
+	  if (!pass2) { alert('Please confirm your password.'); return false; }
 	  if (pass != pass2) { alert("Passwords do not match."); return false; }
 	  
 	  // Build service call options.
