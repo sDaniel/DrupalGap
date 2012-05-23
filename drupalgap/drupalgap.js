@@ -36,7 +36,7 @@ $(document).ready(function() {
 			},
 			"success":function(){
 				// Go to the dashboard.
-				$.mobile.changePage("drupalgap/pages/user_login.html", { transition: "fade"});
+				$.mobile.changePage("drupalgap/pages/arbeit_finden-listenansicht.html", { transition: "fade"});
 			}
 		};
 		drupalgap_services_resource_system_connect.resource_call(options);
