@@ -16,3 +16,8 @@ fieldset legend {
 label {
 	font-weight: bold;
 }
+
+h2 {
+	font-size: 1.2em;
+    color: #008000;
+}
