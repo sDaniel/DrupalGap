@@ -3,3 +3,5 @@
 jquery/plugins/*
 drupalgap/pages/home.html
 test.html
+
+cordova-1.7.0.js
