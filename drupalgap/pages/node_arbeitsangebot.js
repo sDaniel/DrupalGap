@@ -43,21 +43,45 @@ $('#drupalgap_page_node_button_comment_edit').live("click",function(){
 	drupalgap_page_comment_edit_nid = drupalgap_page_node_nid;
 });
 
+/*
+ * Render the node
+ */
 function drupalgap_page_node_success(drupalgap_page_node) {
 	// Fill in placeholders.
 	
 	// Node title.
 	$('#drupalgap_page_node h1').html(drupalgap_page_node.title);
 	
-	// Node body.
-	var body;
-	if (drupalgap_site_settings.variable.drupal_core == "6") {
-		body = drupalgap_page_node.body;
-	}
-	else if (drupalgap_site_settings.variable.drupal_core == "7") {
-		body = drupalgap_page_node.body.und[0].safe_value;
-	}
-	$('#drupalgap_page_node .content').html(body);
+	var content ="";
+	
+	// Titel
+    if(drupalgap_page_node.title !== undefined ) {
+        content += "<h3 class='title'>h3" 
+                    + drupalgap_page_node.title 
+                    + "<h3>";
+    }
+
+    // Berufsfelder
+    if(drupalgap_page_node.field_aa_berufsfelder !== undefined ) {
+        content += "<div class='ui-grid-a'>" 
+                    + "<div class='ui-block-a'><h5>Berufsfeld</h5></div>"
+                    + "<div class='ui-block-b'><p>"
+                    + drupalgap_page_node.field_aa_berufsfelder.und[0].tid + "</p></div>"
+                    + "<div>";
+    }
+    
+    
+    
+    // Anforderungen
+    if(drupalgap_page_node.field_anforderungen !== undefined && drupalgap_page_node.field_anforderungen.length > 0) {
+        content += "<div id='anforderungen'>" 
+                    + drupalgap_page_node.field_anforderungen.und[0].safe_value 
+                    + "<div>";
+    }
+    
+    
+    $('#drupalgap_page_node .content').html(content);
+
 	
 	// Set edit button visibility
 	// If user is not user 1 and user is not node author, hide the edit button, otherwise show it.

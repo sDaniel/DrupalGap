@@ -39,7 +39,9 @@ $('#drupalgap_page_arbeit_finden_list').live('pageshow',function(){
                 // empty message.
                 if ($(content.nodes).length > 0) {
                     $.each(content.nodes,function(index,obj){
-                        html = "<a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'><span class='title'>" + obj.node.title  + "</span>"
+                        html = "<h2 class='title'><a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'>"
+                               + obj.node.title  + "</a></h2>"
+                               + "<a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'>"
                                + "<span class='payment'>" + obj.node.payment  + "</span>" 
                                + "<span class='distance'>" + obj.node.distance  + "</span>"
                                + "</a>";
