@@ -1,0 +1,3 @@
+[submodule "stopgap"]
+	path = stopgap
+	url = https://github.com/alunny/stopgap.git
