@@ -53,32 +53,87 @@ function drupalgap_page_node_success(drupalgap_page_node) {
 	$('#drupalgap_page_node h1').html(drupalgap_page_node.title);
 	
 	var content ="";
-	
+    try {	
 	// Titel
     if(drupalgap_page_node.title !== undefined ) {
-        content += "<h3 class='title'>h3" 
+        content += "<h3 class='title'>" 
                     + drupalgap_page_node.title 
                     + "<h3>";
     }
 
+
     // Berufsfelder
-    if(drupalgap_page_node.field_aa_berufsfelder !== undefined ) {
-        content += "<div class='ui-grid-a'>" 
-                    + "<div class='ui-block-a'><h5>Berufsfeld</h5></div>"
-                    + "<div class='ui-block-b'><p>"
-                    + drupalgap_page_node.field_aa_berufsfelder.und[0].tid + "</p></div>"
-                    + "<div>";
-    }
-    
-    
+    if(drupalgap_page_node.field_aa_berufsfelder !== undefined) {
+        content += "<div class='berufsfelder'><br>Berufsfeld:"
+        + drupalgap_page_node.field_aa_berufsfelder.und[0].tid 
+        + "</br>"
+        + "<div>";
+    }      
+
+    // Arbeitsbeschreibung
+    if(drupalgap_page_node.field_arbeitsbeschreibung !== undefined) {
+        content += "<div class='arbeitsbeschreibung'><br>Arbeitsbeschreibung:</br>"
+        + "<br>"
+        + drupalgap_page_node.field_arbeitsbeschreibung.und[0].safe_value 
+        + "</br>"
+        + "<div>";
+    }      
     
     // Anforderungen
-    if(drupalgap_page_node.field_anforderungen !== undefined && drupalgap_page_node.field_anforderungen.length > 0) {
-        content += "<div id='anforderungen'>" 
+    if(drupalgap_page_node.field_anforderungen !== undefined) {
+        content += "<div class='anforderungen'><br>Anforderungen:</br>"
+                    + "<br>"
                     + drupalgap_page_node.field_anforderungen.und[0].safe_value 
+                    + "</br>"
                     + "<div>";
     }
+    } catch(e){}
+    // Stichworte
+    if(drupalgap_page_node.field_stichworte !== undefined) {
+        content += "<div class='stichworte'><br>Stichworte:"
+        + drupalgap_page_node.field_stichworte.und[0].safe_value 
+        + "</br>"
+        + "<div>";
+    }     
+
+    // Stundenlohn
+    if(drupalgap_page_node.field_stundenlohn !== undefined) {
+        content += "<div class='stundenlohn'><br>Stundenlohn (in Credits):"
+        + drupalgap_page_node.field_stundenlohn.und[0].value 
+        + "</br>"
+        + "<div>";
+    }
     
+    // Arbeitsdauer
+    
+    if(drupalgap_page_node.field_arbeitsdauer !== undefined) {
+        content += "<div class='arbeitsdauer'><br>Arbeitsdauer (in Stunden):"
+        + drupalgap_page_node.field_arbeitsdauer.und[0].value 
+        + "</br>"
+        + "<div>";
+    }  
+
+    // Arbeitsort    
+    
+    if(drupalgap_page_node.field_arbeitsort !== undefined) {
+        content += "<div class='arbeitsort'><br>Arbeitsort</br>"
+        + "<br>Ortsname:"
+        + drupalgap_page_node.field_arbeitsort.und[0].name 
+        + "</br>"
+        + "<br>Strasse:"
+        + drupalgap_page_node.field_arbeitsort.und[0].street 
+        + "</br>"
+        + "<br>Postleihzahl:"
+        + drupalgap_page_node.field_arbeitsort.und[0].postal_code 
+        + "</br>"
+        + "<br>Stadt:"
+        + drupalgap_page_node.field_arbeitsort.und[0].city 
+        + "</br>"
+        + "<br>Land:"
+        + drupalgap_page_node.field_arbeitsort.und[0].country 
+        + "</br>"        
+        + "<div>";
+    }
     
     $('#drupalgap_page_node .content').html(content);
 
