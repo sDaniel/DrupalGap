@@ -24,6 +24,7 @@ $('#drupalgap_page_arbeit_finden_list').live('pageshow',function(){
         // Build content retrieve resource call options.
         views_options = {
             "path":"views_datasource/drupalgap_page_arbeit_finden_list",
+            "load_from_local_storage":"0",
             "error":function(jqXHR, textStatus, errorThrown) {
                 if (errorThrown) {
                     alert(errorThrown);
