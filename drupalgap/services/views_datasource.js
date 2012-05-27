@@ -15,9 +15,11 @@ var drupalgap_views_datasource_retrieve = {
 			// TODO - Validate views json display path.
 			this.resource_result = null;
 			this.resource_path = caller_options.path;
+			this.load_from_local_storage = caller_options.load_from_local_storage;
 			options = {
 				"resource_path":this.resource_path,
 				"type":this.resource_type,
+				"load_from_local_storage":this.load_from_local_storage,
 				"async":true,
 				"error":this.error,
 				"success":this.success,
