@@ -1,112 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                  "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<title>Contact Example</title>
-
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-<script type="text/javascript" charset="utf-8" src="jquery-1.5.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="MapKitPlug.js"></script>
-<script type="text/javascript" charset="utf-8">
-
-// Wait for PhoneGap to load
-function onLoad()
-{
-    document.addEventListener("deviceready", onDeviceReady, false);         
-}
-
-function cbMapCallback()
-{
-	alert(arguments[0]);
-}
-
-
-// PhoneGap is ready
-function onDeviceReady() 
-{
-
-}
-
-function showMap()
-{
-	var pin = { lat:49.281468,
-				lon:-123.104446,
-				title:"Nitobi HQ",
-				pinColor:"purple", 
-				index:0,
-				selected:true};
-				
-	var pin2 = { lat:49.281468,
-				lon:-123.104446,
-				title:"Nitobi HQ",
-				pinColor:"purple", 
-				index:0,
-				selected:true};
-
-
-	
-	// do your thing!
-	var _options = {
-		   buttonCallback: "cbMapCallback",
-		   height:360,
-		   diameter:1000,
-		   atBottom:true,
-		   lat:pin.lat,
-		   lon:pin.lon
-			};
-
-	window.plugins.mapKit.showMap();
-	window.plugins.mapKit.setMapData([pin],_options);
-	
-}
-
-function hideMap()
-{
-	window.plugins.mapKit.hideMap();
-}
-
-function resizeMap()
-{
-			var pin = { lat:49.281468,
-				lon:-123.104446,
-				title:"Nitobi HQ",
-				pinColor:"purple", 
-				index:0,
-				selected:true};
-				
-	var pin2 = { lat:49.281468,
-				lon:-123.104446,
-				title:"Nitobi HQ",
-				pinColor:"purple", 
-				index:0,
-				selected:true};
-
-
-	
-	// do your thing!
-	var _options = {
-		   buttonCallback: "cbMapCallback",
-		   height:260,
-		   diameter:1000,
-		   atBottom:true,
-		   lat:pin.lat,
-		   lon:pin.lon
-			};
-
-	window.plugins.mapKit.showMap();
-	window.plugins.mapKit.setMapData([pin],_options);
-}
-
-
-</script>
-</head>
-<body onload="onLoad()">
-
-<h1>Example</h1>
-
-	<button style="top:400px;position:absolute;" onclick="showMap()">Show Map</button>
-<button style="left:100px;top:400px;position:absolute;" onclick="hideMap()">Hide Map</button>
-<button style="left:200px;top:400px;position:absolute;" onclick="resizeMap()">Resize Map</button>
-
-</body>
-</html>
+<div data-role="page" id="page_1">
+  	<div data-role="header">
+        <a data-role="button" data-transition="fade" data-theme="b" href="arbeit_finden-listenansicht.html"
+            data-icon="back" data-iconpos="right">
+            Zurück
+        </a>
+    	<h1></h1>
+    	<a href="node_edit.html" data-icon="gear" class="ui-btn-right" id="drupalgap_page_node_button_edit" style='display: none;'>Edit</a>
+  	</div><!-- /header -->
+  	<div data-role="content" class='content'></div><!-- /content -->
+        <ul>
+            <li>
+                <a href="arbeit_finden-listenansicht.html" data-theme="a" data-icon="">
+                    Fertig
+                </a>
+            </li>
+            <li>
+                <a href="filtern.html" data-theme="a" data-icon="">
+                    Filtern
+                </a>
+            </li>
+        </ul>          
+  	</div><!-- /content -->
+</div><!-- /page -->
