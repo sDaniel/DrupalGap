@@ -1,3 +1,7 @@
 [submodule "stopgap"]
 	path = stopgap
 	url = https://github.com/alunny/stopgap.git
+
+[submodule "stopgap/ext/thumbs.js"]
+	path = ext/thumbs
+	url = git://github.com/mwbrooks/thumbs.js.git
