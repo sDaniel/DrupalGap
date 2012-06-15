@@ -34,7 +34,7 @@ var drupalgap_services_node_create = {
                     title : node.title,
                     type : "arbeitsangebot",
                     field_aa_berufsfelder : {
-                        und : [node.field_aa_berufsfelder]
+                        und : node.field_aa_berufsfelder
                     },
                     field_arbeitsbeschreibung : {
                         und : [{

@@ -25,9 +25,13 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                         '<div><a href="#" data-role="button" id="drupalgap_page_node_edit_fill">Mit Beispieldaten füllen</a></div>',
                     '</div>',
                     // Berufsfelder field_aa_berufsfelder
-                    '<div>',
-                        '<label for="field_aa_berufsfelder">Berufsfelder <span class="form-required" title="Diese Angabe wird benötigt.">*</span></label>',
-                        '<input type="text" id="field_aa_berufsfelder" />',
+                    //'<div>',
+                    //    '<label for="field_aa_berufsfelder">Berufsfelder <span class="form-required" title="Diese Angabe wird benötigt.">*</span></label>',
+                    //    '<input type="text" id="field_aa_berufsfelder" />',
+                    //'</div>',
+                    '<div class="form-item form-type-select form-item-field-aa-berufsfelder-und">',
+                      '<label for="field_aa_berufsfelder">Berufsfelder </label>',
+                     '<select multiple="multiple" name="field_aa_berufsfelder[und][]" id="field_aa_berufsfelder" class="form-select"><option value="_none">- Keine -</option><option value="1">Bürowesen</option><option value="3">-Allgemeine Bürofachkräfte</option><option value="4">-Buchhalter</option><option value="5">-Bürohilfskräfte</option><option value="11">Management</option><option value="7">Sozialwesen</option><option value="8">-Altenpflege & Altenbetreuung</option><option value="9">-Erzieher & Kinderpfleger</option><option value="10">-Hauspflege & Familienpflege</option></select>',
                     '</div>',
                     
                     // Arbeitsbeschreibung field_arbeitsbeschreibung
@@ -189,11 +193,6 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
         var title = $('#drupalgap_page_node_edit_title').val();
         if (!title) { alert('Bitte geben Sie einen Titel ein.'); return false; }
         
-        if ($('#drupalgap_page_node_edit_body').length) {
-            var body = $('#drupalgap_page_node_edit_body').val();
-            if (!body) { alert('Please enter some body content.'); return false; }
-        }
-        
         // Arbeitsangebot
         if (drupalgap_page_node_edit_type == "arbeitsangebot") {
             
@@ -234,7 +233,12 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
             // Stundenlohn
             var field_stundenlohn = $('#field_stundenlohn').val();
             //if (!field_stundenlohn) { alert('Bitte geben Sie einen Stundenlohn ein.'); return false; }
+        } else {
+            if ($('#drupalgap_page_node_edit_body').length) {
+                var body = $('#drupalgap_page_node_edit_body').val();
+                if (!body) { alert('Please enter some body content.'); return false; }
             }
+        }
                 
         if (!drupalgap_page_node_edit_nid) { // new nodes...
             options = {
