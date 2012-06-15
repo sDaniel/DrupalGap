@@ -1,5 +1,6 @@
 var drupalgap_page_node_edit_nid;
 var drupalgap_page_node_edit_type;
+
 $('#drupalgap_page_node_edit').live('pageshow',function(){
     try {
         
@@ -19,36 +20,38 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
             if (drupalgap_page_node_edit_type == "arbeitsangebot") {
                 $('#body').hide();
                 
+                
                 var fieldshtml = 
                     [
                     '<div>',
                         '<div><a href="#" data-role="button" id="drupalgap_page_node_edit_fill">Mit Beispieldaten füllen</a></div>',
                     '</div>',
-                    // Berufsfelder field_aa_berufsfelder
-                    //'<div>',
-                    //    '<label for="field_aa_berufsfelder">Berufsfelder <span class="form-required" title="Diese Angabe wird benötigt.">*</span></label>',
-                    //    '<input type="text" id="field_aa_berufsfelder" />',
-                    //'</div>',
                     '<div class="form-item form-type-select form-item-field-aa-berufsfelder-und">',
                       '<label for="field_aa_berufsfelder">Berufsfelder </label>',
                      '<select multiple="multiple" name="field_aa_berufsfelder[und][]" id="field_aa_berufsfelder" class="form-select"><option value="_none">- Keine -</option><option value="1">Bürowesen</option><option value="3">-Allgemeine Bürofachkräfte</option><option value="4">-Buchhalter</option><option value="5">-Bürohilfskräfte</option><option value="11">Management</option><option value="7">Sozialwesen</option><option value="8">-Altenpflege & Altenbetreuung</option><option value="9">-Erzieher & Kinderpfleger</option><option value="10">-Hauspflege & Familienpflege</option></select>',
                     '</div>',
                     
                     // Arbeitsbeschreibung field_arbeitsbeschreibung
-                    '<div>',
-                        '<label for="field_arbeitsbeschreibung">Arbeitsbeschreibung</label>',
-                        '<textarea id="field_arbeitsbeschreibung" rows="5"></textarea>',
+                    '<div class="form-item form-type-textarea form-item-field-arbeitsbeschreibung-und-0-value">',
+                        '<label for="field_arbeitsbeschreibung">Arbeitsbeschreibung </label>',
+                        '<div class="form-textarea-wrapper resizable">',
+                            '<textarea rows="5" cols="60" name="field_arbeitsbeschreibung[und][0][value]" id="field_arbeitsbeschreibung" class="text-full form-textarea"></textarea>',
+                         '</div>',
                     '</div>',
+  
                     // Anforderungen field_anforderungen
-                    '<div>',
-                        '<label for="field_anforderungen">Anforderungen</label>',
-                        '<textarea id="field_anforderungen" rows="5"></textarea>',
+                    '<div class="form-item form-type-textarea form-item-field-anforderungen-und-0-value">',
+                        '<label for="field_anforderungen">Anforderungen </label>',
+                        '<div class="form-textarea-wrapper resizable">',
+                            '<textarea rows="5" cols="60" name="field_anforderungen[und][0][value]" id="field_anforderungen" class="text-full form-textarea"></textarea>',
+                        '</div>',
                     '</div>',
 
                     // Stichworte field_stichworte
-                    '<div>',
-                        '<label for="field_stichworte">Stichworte</label>',
-                        '<input type="text" id="field_stichworte" />',
+                    '<div class="form-item form-type-textfield form-item-field-stichworte-und">',
+                        '<label for="field_stichworte">Stichworte </label>',
+                        '<input type="text" class="form-text form-autocomplete" maxlength="1024" size="60" value="" name="field_stichworte[und]" id="field_stichworte">',
+                        '<div class="description">Unter diesen Stichpunkten können Jobsucher Ihre Anzeige finden. Trennen Sie mehrere Einträge mit einem Komma. Beispiel \'Führerschein, Tauchschein, Mediterane Küche, Vollzeit, Teilzeit\'</div>',
                     '</div>',
                     
                     // Arbeitsort field_arbeitsort...
@@ -83,26 +86,29 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                           '<label for="edit-field-arbeitsort-und-0-locpick-user-longitude">Longitude </label>',
                          '<input type="text" id="edit-field-arbeitsort-und-0-locpick-user-longitude" name="field_arbeitsort[und][0][locpick][user_longitude]" value="" size="16" maxlength="20" class="form-text">',
                         '</div>',
-                        '<div class="description"><br><br>If you wish to supply your own latitude and longitude, you may enter them above.  If you leave these fields blank, the system will attempt to determine a latitude and longitude for you from the entered address.  To have the system recalculate your location from the address, for example if you change the address, delete the values for these fields.',
+                        '<div>',
+                            '<div><a href="#" data-role="button" id="get-latlong">Aktuelle Koordinaten eintragen</a></div>',
+                        '</div>',
+                        '<div class="description">Geografische Breite und Länge. Wenn die Felder leer bleiben, versucht das System die Daten zu ermitteln.',
                      '</div></div>',
                     '</fieldset>',
 
-                  
+                    '<hr/>',
                     // Arbeitszeitraum field_arbeitszeitraum...
                     '<div id="edit-field-arbeitszeitraum" class="field-type-datetime field-name-field-arbeitszeitraum field-widget-date-popup form-wrapper">',
                       '<fieldset class="form-wrapper"><legend><span class="fieldset-legend">Arbeitszeitraum </span></legend>',
-                        '<div class="fieldset-wrapper"><div class="fieldset-description">Empty \'End date\' values will use the \'Start date\' values.</div>',
+                        '<div class="fieldset-wrapper">',
                           '<div class="date-no-float start-date-wrapper container-inline-date">',
                             '<div class="form-item form-type-date-popup form-item-field-arbeitszeitraum-und-0-value">',
                               '<div class="date-padding" id="edit-field-arbeitszeitraum-und-0-value">',
                                 '<div class="form-item form-type-textfield form-item-field-arbeitszeitraum-und-0-value-date">',
                                   '<label for="edit-field-arbeitszeitraum-und-0-value-datepicker-popup-0">Start-Datum </label>',
-                                  '<input data-role="datebox" data-options=\'{"mode":"flipbox", "centerHoriz": true, "useFocus": true, "minDays": 0}\' type="text" maxlength="30" size="20" value="2012/06/15" name="field_arbeitszeitraum[und][0][value][date]" id="edit-field-arbeitszeitraum-und-0-value-datepicker-popup-0" class="date-clear form-text">',
+                                  '<input data-role="datebox" data-options=\'{"mode":"flipbox", "centerHoriz": true, "useFocus": true, "minDays": 0}\' type="text" maxlength="30" size="20" value="" name="field_arbeitszeitraum[und][0][value][date]" id="edit-field-arbeitszeitraum-und-0-value-datepicker-popup-0" class="date-clear form-text">',
                                   '<div class="description"> E.g., 2012/06/15</div>',
                                 '</div>',
                               '<div class="form-item form-type-textfield form-item-field-arbeitszeitraum-und-0-value-time">',
                                 '<label for="edit-field-arbeitszeitraum-und-0-value-timeEntry-popup-1">Start-Uhrzeit </label>',
-                                '<input data-role="datebox" data-options=\'{"mode":"timeflipbox", "centerHoriz": true, "useFocus": true}\' type="text" maxlength="10" size="15" value="14:45" name="field_arbeitszeitraum[und][0][value][time]" id="edit-field-arbeitszeitraum-und-0-value-timeEntry-popup-1" class="date-clear form-text">',
+                                '<input data-role="datebox" data-options=\'{"mode":"timeflipbox", "centerHoriz": true, "useFocus": true}\' type="text" maxlength="10" size="15" value="" name="field_arbeitszeitraum[und][0][value][time]" id="edit-field-arbeitszeitraum-und-0-value-timeEntry-popup-1" class="date-clear form-text">',
                                 '<div class="description">E.g., 14:45</div>',
                               '</div>',
                               '</div>',
@@ -114,12 +120,12 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                               '<div class="date-padding" id="edit-field-arbeitszeitraum-und-0-value2">',
                                 '<div class="form-item form-type-textfield form-item-field-arbeitszeitraum-und-0-value2-date">',
                                   '<label for="edit-field-arbeitszeitraum-und-0-value2-datepicker-popup-0">End-Datum </label>',
-                                  '<input data-role="datebox" data-options=\'{"mode":"flipbox", "centerHoriz": true, "useFocus": true, "minDays": 0}\' type="text" maxlength="30" size="20" value="2012/06/15" name="field_arbeitszeitraum[und][0][value2][date]" id="edit-field-arbeitszeitraum-und-0-value2-datepicker-popup-0" class="date-clear form-text">',
+                                  '<input data-role="datebox" data-options=\'{"mode":"flipbox", "centerHoriz": true, "useFocus": true, "minDays": 0}\' type="text" maxlength="30" size="20" value="" name="field_arbeitszeitraum[und][0][value2][date]" id="edit-field-arbeitszeitraum-und-0-value2-datepicker-popup-0" class="date-clear form-text">',
                                   '<div class="description"> E.g., 2012/06/15</div>',
                                 '</div>',
                                 '<div class="form-item form-type-textfield form-item-field-arbeitszeitraum-und-0-value2-time">',
                                   '<label for="edit-field-arbeitszeitraum-und-0-value2-timeEntry-popup-1">End-Uhrzeit </label>',
-                                  '<input data-role="datebox" data-options=\'{"mode":"timeflipbox", "centerHoriz": true, "useFocus": true}\' type="text" maxlength="10" size="15" value="14:45" name="field_arbeitszeitraum[und][0][value2][time]" id="edit-field-arbeitszeitraum-und-0-value2-timeEntry-popup-1" class="date-clear form-text">',
+                                  '<input data-role="datebox" data-options=\'{"mode":"timeflipbox", "centerHoriz": true, "useFocus": true}\' type="text" maxlength="10" size="15" value="" name="field_arbeitszeitraum[und][0][value2][time]" id="edit-field-arbeitszeitraum-und-0-value2-timeEntry-popup-1" class="date-clear form-text">',
                                   '<div class="description">E.g., 14:45</div>',
                                 '</div>',
                               '</div>',
@@ -127,23 +133,24 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                           '</div>',
                         '</div>',
                       '</fieldset>',
+                    '</div>',
                   
                     // Arbeitsdauer field_arbeitsdauer
-                    '<div>',
-                        '<label for="field_arbeitsdauer">Arbeitsdauer <span class="form-required" title="Diese Angabe wird benötigt.">*</span></label>',
-                        '<input type="text" id="field_arbeitsdauer" />',
+                    '<div class="form-item form-type-textfield form-item-field-arbeitsdauer-und-0-value">',
+                        '<label for="field_arbeitsdauer">Arbeitsdauer in Stunden<span title="Diese Angabe wird benötigt." class="form-required">*</span></label>',
+                        '<input type="text" class="form-text required" maxlength="10" size="12" value="10" name="field_arbeitsdauer[und][0][value]" id="field_arbeitsdauer">',
+                        '<div class="description">Bitte geben Sie die die Anzahl an geplanten Arbeitsstunden an. Für eine Stunde und 30 Minuten geben Sie bitte 1,5 an.</div>',
                     '</div>',
                   
                     // Stundenlohn field_stundenlohn
-                    '<div>',
-                        '<label for="field_stundenlohn">Stundenlohn</label>',
-                        '<input type="text" id="field_stundenlohn" />',
+                    '<div class="form-item form-type-textfield form-item-field-stundenlohn-und-0-value">',
+                        '<label for="field_stundenlohn">Stundenlohn </label>',
+                        '<span class="field-prefix">Credits</span> <input type="text" class="form-text" maxlength="10" size="12" value="20" name="field_stundenlohn[und][0][value]" id="field_stundenlohn">',
                     '</div>'
                    ].join('\n');
                 
                 // Attach event handlers and render via jQM
                 $('#fields').html(fieldshtml).trigger('create');
-                
             }
         }
         else { // existing node...
@@ -377,6 +384,70 @@ $('#drupalgap_page_node_edit_delete').live('click',function(){
     return false;
 });
 
+
+
+
+
+
+$('#get-latlong').live('click',function(){
+    
+    function getGeolocation()
+    {
+        navigator.geolocation.getCurrentPosition(onGetGeolocationSuccess, onGetGeolocationError);
+    }
+    
+    function onGetGeolocationSuccess(position)
+    {
+        // html = "Latitude: " + position.coords.latitude + "<br />" +
+                // "Longitude: " + position.coords.longitude + "<br />" +
+                // "Altitude: " + position.coords.altitude + "<br />" + 
+                // "Accuracy: " + position.coords.accuracy + "<br />" + 
+                // "Altitude Accuracy: " + position.coords.altitudeAccuracy + "<br />" + 
+                // "Heading: " + position.coords.heading + "<br />" + 
+                // "Speed: " + position.coords.speed + "<br />" + 
+                // "Timestamp: " + new Date(position.timestamp) + "<br />";     
+        // $("#dGeolocation").html(html);
+        
+        $('#edit-field-arbeitsort-und-0-locpick-user-latitude').val(position.coords.latitude);
+        $('#edit-field-arbeitsort-und-0-locpick-user-longitude').val(position.coords.longitude);
+        
+        // options = 
+        // {
+            // controls: false, 
+            // scrollwheel: false,
+            // latitude: position.coords.latitude, 
+            // longitude: position.coords.longitude, 
+            // markers: 
+            // [{
+                // latitude: position.coords.latitude, 
+                // longitude: position.coords.longitude
+            // }], 
+            // zoom: 15, 
+            // icon: 
+            // {
+            // image: "asset/img/map-marker.png", 
+                // shadow: false, 
+                // iconsize: [16, 24], 
+                // shadowsize: false, 
+                // iconanchor: [4, 19], 
+                // infowindowanchor: [8, 2]
+            // }
+        // };
+        // $("#dGoogle-map").gMap(options);
+    }
+    
+    function onGetGeolocationError(error)
+    {
+        html = "Error code: " + error.code + "<br />" + 
+                "Error message: " + error.message + "<br />";
+        $("#dGeolocation").html(html);
+    }
+    
+    getGeolocation();
+});
+
+
+
 $('#drupalgap_page_node_edit_fill').live('click',function(){
 
     var currentTime = new Date();
@@ -395,7 +466,7 @@ $('#drupalgap_page_node_edit_fill').live('click',function(){
     var field_anforderungen = "Meine Anforderungen sind Lorem.";
     
     // Stichworte
-    var field_stichworte = "F&uuml;hrerschein" // TODO: real field
+    var field_stichworte = "Führerschein" // TODO: real field
     
     // Arbeitsort
     var field_arbeitsort_name = 'Kanzleramt';
