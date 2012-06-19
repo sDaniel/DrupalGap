@@ -9,6 +9,7 @@ h2 {
 
 h3 {
 	font-size: 1em;
+  margin-bottom: 0.15em;
 }
 
 
@@ -53,10 +54,12 @@ a:active {
  * Arbeitsangebot
  */
  
-#berufsfelder-headline, #berufsfelder-list, #berufsfelder-list li {
+#berufsfelder-headline, #berufsfelder-list, .inline-list, 
+#stichworte-headline, #stichworte-list, .inline-headline {
   list-style-image: none;
   padding: 0;
-  display: inline;
+  display: inline-block;
+  margin: 0.25em 0 0.15em 0;
 }
 
 /*

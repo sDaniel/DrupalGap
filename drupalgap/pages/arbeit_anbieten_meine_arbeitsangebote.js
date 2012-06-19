@@ -50,7 +50,7 @@ $('#drupalgap_page_arbeit_anbieten_meine_angebote').live('pageshow',function(){
                     });
                 }
                 else {
-                    html = "Sorry, there is no published content.";
+                    html = "Keine Angebote gefunden";
                     $("#meine_angebote_list").append($("<li></li>",{"html":html}));
                 }
                 
