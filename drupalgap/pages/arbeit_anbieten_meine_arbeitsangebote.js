@@ -72,3 +72,7 @@ $('#meine_angebote_list a').live("click",function(){
     // Save a reference to the node id.
     drupalgap_page_node_nid = $(this).attr('id');
 });
+
+$("#arbeitsangebot").live("click",function(){
+	drupalgap_page_node_edit_type = $(this).attr('id'); // let the node_edit page know what type of node we're creating
+});
