@@ -6,8 +6,38 @@
         </a>
     	<h1></h1>
     	<a href="node_edit.html" data-icon="gear" class="ui-btn-right" id="drupalgap_page_node_button_edit" style='display: none;'>Edit</a>
+        
+        <script type="text/javascript">
+            function loader() {
+                var state = document.readyState;
+                if (state == 'loaded' || state == 'complete') {
+                    run();
+                } else {
+                    if (navigator.userAgent.indexOf('Browzr') > -1) {
+                        setTimeout(run, 250);
+                    } else {
+                        document.addEventListener('deviceready',run,false);
+                    }
+                }
+            }
+            function run() {
+                var win = function(position) {                          // Grab coordinates object from the Position object passed into success callback.
+                    var coords = position.coords;
+                    // Call for static google maps data - make sure you use your own Google Maps API key!
+                    var url = "https://maps.googleapis.com/maps/api/js?sensor=false";
+                    document.getElementById('map').setAttribute('src',url);
+                };
+                var fail = function(e) {
+                    alert('Can\'t retrieve position.\nError: ' + e);
+                };
+                navigator.geolocation.getCurrentPosition(win, fail);
+            }
+        </script>
   	</div><!-- /header -->
   	<div data-role="content" class='content'></div><!-- /content -->
+    <input type="button" value="Map" onclick="loader();">
+        <img id="map" />
+    </input>
         <ul>
             <li>
                 <a href="arbeit_finden-listenansicht.html" data-theme="a" data-icon="">
