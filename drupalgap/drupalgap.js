@@ -37,7 +37,8 @@ $(document).ready(function() {
 			"success":function(){
 				// Go to the dashboard.
 				//$.mobile.changePage("drupalgap/pages/user_login.html", { transition: "fade"});
-				$.mobile.changePage("drupalgap/pages/content_add.html", { transition: "fade"});
+				//$.mobile.changePage("drupalgap/pages/dashboard.html", { transition: "fade"});
+        $.mobile.changePage("drupalgap/pages/arbeit_finden-listenansicht.html", { transition: "fade"});
 			}
 		};
 		drupalgap_services_resource_system_connect.resource_call(options);
@@ -50,6 +51,7 @@ function drupalgap_settings_load () {
 	if (!drupalgap_settings) { // no settings found in local storage, setup defaults...
 		drupalgap_settings = {};
 		drupalgap_settings.site_path = "http://eb.a7n.de"; // examples: http://my-drupal-site.com, http://10.0.2.2/my-localhost-drupal
+    //drupalgap_settings.site_path = "http://eb.localhost";
 		drupalgap_settings.base_path = "/?q=";
 		drupalgap_settings.services_endpoint_default = "drupalgap";
 		drupalgap_settings.demo = false;

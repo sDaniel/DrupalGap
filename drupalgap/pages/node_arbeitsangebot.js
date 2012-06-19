@@ -1,5 +1,6 @@
 var drupalgap_page_node;
 var drupalgap_page_node_nid; // other's set this nid so this page knows which node to load
+var processed_berufsfelder;
 $('#drupalgap_page_node').live('pageshow',function(){
     try {
         
@@ -62,11 +63,37 @@ function drupalgap_page_node_success(drupalgap_page_node) {
     }
     // Berufsfelder
     if(drupalgap_page_node.field_aa_berufsfelder !== undefined && drupalgap_page_node.field_aa_berufsfelder.und.length > 0 ) {
-        content += "<div class='berufsfelder'>Berufsfeld: ";
-        $.each(drupalgap_page_node.field_aa_berufsfelder.und, function(index, value) {
-            content += value.tid + ", "; 
-        });
-        content += "</div>";
+        // Synchronously.
+        var berufsfelder_taxonomy;
+        if(processed_berufsfelder == undefined) {
+          processed_berufsfelder = true;
+          $.ajax({
+            url: 'http://eb.a7n.de/drupalgap/taxonomy_vocabulary/getTree',
+            type: 'POST',
+            data: {vid : 3},
+            //dataType: options.dataType,
+            //async: options.async,
+            error: function (jqXHR, textStatus, errorThrown) {
+                  berufsfelder_taxonomy = {
+                      "jqXHR":jqXHR,
+                      "textStatus":textStatus,
+                      "errorThrown":errorThrown,
+                  };
+            },
+            success: function (data) {
+              berufsfelder_taxonomy = data;
+              $('#berufsfelder-headline').append('Berufsfelder: '); 
+                $.each(drupalgap_page_node.field_aa_berufsfelder.und, function(index, value) {
+                  $.each(berufsfelder_taxonomy, function(index, berufsfeld) {
+                    if (berufsfeld.tid == value.tid) {
+                      $('#berufsfelder-list').add('li').append('<li>' + berufsfeld.name + ', </li>'); 
+                    }
+                  });
+                });
+              }
+          });
+        }
+        content += "<div id='berufsfelder'><h3 id='berufsfelder-headline'></h3><ul id='berufsfelder-list'></ul></div>";
     }
     // Stichworte
     if(drupalgap_page_node.field_stichworte !== undefined && drupalgap_page_node.field_stichworte.und.length > 0 ) {

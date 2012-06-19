@@ -40,12 +40,15 @@ $('#drupalgap_page_arbeit_finden_list').live('pageshow',function(){
                 // empty message.
                 if ($(content.nodes).length > 0) {
                     $.each(content.nodes,function(index,obj){
-                        html = "<h2 class='title'><a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'>"
+                        html = "<h2 class='listview-title title'><a href='node_arbeitsangebot.html' class=\"listview-title-link\" id='" 
+                               + obj.node.nid + "'>"
                                + obj.node.title  + "</a></h2>"
                                + "<a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'>"
-                               + "<span class='payment'>" + obj.node.payment  + "</span>" 
-                               + "<span class='distance'>" + obj.node.distance  + "</span>"
-                               + "</a>";
+                               + "<span class='payment'>" + obj.node.payment  + "</span>";
+                               if (obj.node.distance) {
+                               html += "<span class='distance'>" + obj.node.distance  + "</span>";
+                               }
+                               html += "</a>";
                         $("#drupalgap_page_arbeitsangebote_list").append($("<li></li>",{"html":html}));
                     });
                 }

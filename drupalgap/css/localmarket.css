@@ -13,6 +13,51 @@ h3 {
 
 
 
+/*
+ * Links
+ */
+a, a:visited {
+  color: #1c6ea0;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #42a9be;
+  text-decoration: none;  
+}
+
+.pager a:hover,
+.pager a:active,
+.pager a:focus {
+  background-color: #1c6ea0;
+  color: #fff;
+}
+
+.ui-btn-left:link, .ui-btn-left:visited {color: white;}
+
+/*
+ * ListView
+ */
+
+.listview-title {
+	margin: 0;
+}
+.listview-title-link {
+  padding: .7em 15px 0em 15px;
+  display: block;
+}
+
+/*
+ * Arbeitsangebot
+ */
+ 
+#berufsfelder-headline, #berufsfelder-list, #berufsfelder-list li {
+  list-style-image: none;
+  padding: 0;
+  display: inline;
+}
 
 /*
  * Dialog

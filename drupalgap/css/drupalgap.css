@@ -19,7 +19,6 @@ label {
 
 h2 {
 	font-size: 1.2em;
-    color: #008000;
 }
 #karte {
     position: absolute;
@@ -27,5 +26,4 @@ h2 {
     right: 0;
     bottom: 0;
     left: 0;
-    
 }
