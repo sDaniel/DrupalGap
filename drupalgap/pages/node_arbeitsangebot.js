@@ -1,6 +1,10 @@
 var drupalgap_page_node;
 var drupalgap_page_node_nid; // other's set this nid so this page knows which node to load
 var processed_berufsfelder;
+var latitude;
+var longitude;
+var node;
+
 $('#drupalgap_page_node').live('pageshow',function(){
     try {
         
@@ -45,14 +49,45 @@ $('#drupalgap_page_node_button_comment_edit').live("click",function(){
     drupalgap_page_comment_edit_nid = drupalgap_page_node_nid;
 });
 
+$('#node-aa-show-map').live("click",function(){
+    if(latitude !== undefined && latitude !== "" && longitude !== undefined && longitude !== "") {
+        // Hide the content show the map        
+        $('#drupalgap_page_node .content, #node-aa-show-map').hide();
+        $('#drupalgap_page_node .map, #node-aa-show-details').show();
+        if(node.title !== undefined ) {
+            $('#drupalgap_page_node .map').add("<h2 class='title'>" + node.title + "</h2>");
+        }
+        
+        // $('#map_canvas').gmap().bind('init', function(ev, map) {
+            // $('#map_canvas').gmap('addMarker', {'position': latitude + ',' + longitude , 'bounds': true}).click(function() {
+                // $('#map_canvas').gmap('openInfoWindow', {'content': 'Hello World!'}, this);
+            // });
+        // });
+        marker_content = "<h4>" + node.title + "</h4>";
+        $('#map_canvas').gmap('addMarker', {'position': latitude + ',' + longitude, 'bounds': true}).click(function() {
+            $('#map_canvas').gmap('openInfoWindow', {'content': marker_content }, this);
+        });
+        
+    } else {
+        alert("Keine Geoinformationen vorhanden um einen Karte darzustellen");
+    }
+});
+
+$('#node-aa-show-details').live("click",function(){
+    $('#drupalgap_page_node .content, #node-aa-show-map').show();
+    $('#drupalgap_page_node .map, #node-aa-show-details').hide();
+});
+
+
 /*
  * Render the node
  */
 function drupalgap_page_node_success(drupalgap_page_node) {
     // Fill in placeholders.
-    
+    node = drupalgap_page_node;
     // Node title.
     $('#drupalgap_page_node h1').html(drupalgap_page_node.title);
+    $('#drupalgap_page_node .map, #node-aa-show-details').hide();
     
     var content ="";
 
@@ -202,13 +237,15 @@ function drupalgap_page_node_success(drupalgap_page_node) {
                     +  "<br/>";
         } // Latitude
         if(drupalgap_page_node.field_arbeitsort.und[0].latitude !== undefined && drupalgap_page_node.field_arbeitsort.und[0].latitude !== "" ) {
+            latitude = drupalgap_page_node.field_arbeitsort.und[0].latitude;
             content += "Latitude: "
-                    +  drupalgap_page_node.field_arbeitsort.und[0].latitude
+                    +  latitude
                     +  "<br/>";
         } // Longitude
         if(drupalgap_page_node.field_arbeitsort.und[0].longitude !== undefined && drupalgap_page_node.field_arbeitsort.und[0].longitude !== "" ) {
+            longitude = drupalgap_page_node.field_arbeitsort.und[0].longitude;
             content += "Longitude: "
-                    +  drupalgap_page_node.field_arbeitsort.und[0].longitude
+                    +  longitude
                     +  "<br/>";
         }
         + "</div>";
