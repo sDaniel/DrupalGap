@@ -73,7 +73,7 @@ $('#drupalgap_user_register_submit').live('click',function() {
 			  switch (drupalgap_site_settings.variable.user_register) {
 				case 1: // Visitors
 				case "1":
-					alert("Registration complete! Please check your e-mail to verify your new account at " + site_name + ".");
+					alert("Registrierung abgeschlossen! Sie erhalten eine E-Mail von uns. Bitte überprüfen Sie Ihren E-Mail-Postfach.");
 					break;
 				case 2: // Visitors, but administrator approval is required
 				case "2":
