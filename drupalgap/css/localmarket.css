@@ -17,18 +17,22 @@ h3 {
 /*
  * Links
  */
-a, a:visited {
+h1 a, h1 a:visited,
+h2 a, h2 a:visited, 
+h3 a, h3 a:visited,
+h4 a, h4 a:visited {
   color: #1c6ea0;
   text-decoration: none;
 }
 
-a:hover,
-a:focus,
-a:active {
+h2 a:hover,
+h2 a:focus,
+h2 a:active {
   color: #42a9be;
   text-decoration: none;  
 }
 
+/*
 .pager a:hover,
 .pager a:active,
 .pager a:focus {
@@ -36,7 +40,9 @@ a:active {
   color: #fff;
 }
 
+.ui-btn:link, .ui-btn:visited,
 .ui-btn-left:link, .ui-btn-left:visited {color: white;}
+*/
 
 /*
  * ListView

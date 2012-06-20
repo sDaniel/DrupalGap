@@ -32,6 +32,7 @@ $('#drupalgap_page_node').live('pageshow',function(){
 $('#drupalgap_page_node_button_edit').live("click",function(){
     // Set the node edit nid.
     drupalgap_page_node_edit_nid = drupalgap_page_node_nid;
+    drupalgap_page_node_edit_type = "arbeitsangebot";
 });
 
 $('#drupalgap_page_node_button_comments').live("click",function(){
@@ -62,7 +63,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
                     + "</h2>";
     }
     // Berufsfelder
-    if(drupalgap_page_node.field_aa_berufsfelder !== undefined && drupalgap_page_node.field_aa_berufsfelder.und.length > 0 ) {
+    if(drupalgap_page_node.field_aa_berufsfelder !== undefined && drupalgap_page_node.field_aa_berufsfelder.und !== undefined && drupalgap_page_node.field_aa_berufsfelder.und.length > 0 ) {
         // Synchronously.
         var berufsfelder_taxonomy;
         var stichworte_taxonomy;
@@ -114,7 +115,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
                   + berufsfelder_html + "</ul></div>";
     }
     // Stichworte
-    if(drupalgap_page_node.field_stichworte !== undefined && drupalgap_page_node.field_stichworte.und.length > 0) {      
+    if(drupalgap_page_node.field_stichworte !== undefined && drupalgap_page_node.field_stichworte.length > 0 && drupalgap_page_node.field_stichworte.und !== undefined && drupalgap_page_node.field_stichworte.und.length > 0) {      
     /* org id output
         content += "<div class='stichworte'>Stichworte: ";
         $.each(drupalgap_page_node.field_stichworte.und, function(index, value) {
@@ -139,35 +140,35 @@ function drupalgap_page_node_success(drupalgap_page_node) {
     }
     
     // Arbeitsbeschreibung
-    if(drupalgap_page_node.field_arbeitsbeschreibung !== undefined && drupalgap_page_node.field_arbeitsbeschreibung.und.length > 0 ) {
+    if(drupalgap_page_node.field_arbeitsbeschreibung !== undefined && drupalgap_page_node.field_arbeitsbeschreibung.und !== undefined && drupalgap_page_node.field_arbeitsbeschreibung.und.length > 0 ) {
         content += "<div class='arbeitsbeschreibung'><h3>Arbeitsbeschreibung:</h3> "
                 + drupalgap_page_node.field_arbeitsbeschreibung.und[0].safe_value 
                 + "</div>";
     }
     
     // Anforderungen
-    if(drupalgap_page_node.field_anforderungen !== undefined && drupalgap_page_node.field_anforderungen.und.length > 0 ) {
+    if(drupalgap_page_node.field_anforderungen !== undefined && drupalgap_page_node.field_anforderungen.und !== undefined && drupalgap_page_node.field_anforderungen.und.length > 0 ) {
         content += "<div class='anforderungen'><h3>Anforderungen:</h3> "
                 + drupalgap_page_node.field_anforderungen.und[0].safe_value 
                 + "</div>";
     }
     
     // Stundenlohn
-    if(drupalgap_page_node.field_stundenlohn !== undefined && drupalgap_page_node.field_stundenlohn.und.length > 0 ) {
+    if(drupalgap_page_node.field_stundenlohn !== undefined && drupalgap_page_node.field_stundenlohn.und !== undefined && drupalgap_page_node.field_stundenlohn.und.length > 0 ) {
         content += "<div class='stundenlohn'><h3 class='inline-headline'>Stundenlohn (in Credits): </h3>"
                 + drupalgap_page_node.field_stundenlohn.und[0].value 
                 + "</div>";
     }
     
     // Arbeitsdauer
-    if(drupalgap_page_node.field_arbeitsdauer !== undefined && drupalgap_page_node.field_arbeitsdauer.und.length > 0 ) {
+    if(drupalgap_page_node.field_arbeitsdauer !== undefined && drupalgap_page_node.field_arbeitsdauer.und !== undefined && drupalgap_page_node.field_arbeitsdauer.und.length > 0 ) {
         content += "<div class='arbeitsdauer'><h3 class='inline-headline'>Arbeitsdauer (in Stunden):</h3> "
                 + drupalgap_page_node.field_arbeitsdauer.und[0].value 
                 + "</div>";
     }  
 
     // Arbeitsort        
-    if(drupalgap_page_node.field_arbeitsort !== undefined && drupalgap_page_node.field_arbeitsort.und.length > 0 ) {
+    if(drupalgap_page_node.field_arbeitsort !== undefined && drupalgap_page_node.field_arbeitsort.und !== undefined && drupalgap_page_node.field_arbeitsort.und.length > 0 ) {
         content += "<div class='arbeitsort'><h3>Arbeitsort</h3>";
         // Name
         if(drupalgap_page_node.field_arbeitsort.und[0].name !== undefined && drupalgap_page_node.field_arbeitsort.und[0].name !== "" ) {

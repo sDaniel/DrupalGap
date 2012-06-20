@@ -233,6 +233,72 @@ var drupalgap_services_node_update = {
             data = "node[type]=" + node.type;
             data += "&node[title]=" + encodeURIComponent(node.title);
             data += "&" + body;
+            
+            // Arbeitsangebot Felder
+            if(node.type == "arbeitsangebot") {
+                data = {
+                    title : node.title,
+                    type : "arbeitsangebot",
+                    field_aa_berufsfelder : {
+                        und : node.field_aa_berufsfelder
+                    },
+                    field_arbeitsbeschreibung : {
+                        und : [{
+                            value : node.field_arbeitsbeschreibung
+                        }]
+                    },
+                    field_anforderungen : {
+                        und : [{
+                            value : node.field_anforderungen
+                        }]
+                    },
+                    field_stichworte : {
+                        und : node.field_stichworte
+                    },
+                    field_arbeitsort : {
+                        und : [{
+                            name    : node.field_arbeitsort_name,
+                            street  : node.field_arbeitsort_street,
+                            additional : "",
+                            postal_code : node.field_arbeitsort_postal_code,
+                            city    : node.field_arbeitsort_city,
+                            country : node.field_arbeitsort_country,
+                            locpick : {
+                                user_latitude : node.field_arbeitsort_latitude,
+                                user_longitude : node.field_arbeitsort_longitude
+                            }
+                        }]
+                    },
+                    field_arbeitszeitraum : {
+                        und : [{
+                            value : {
+                                date : node.field_arbeitszeitraum_start_date,
+                                time : node.field_arbeitszeitraum_start_time
+                            },
+                            value2 : {
+                                date : node.field_arbeitszeitraum_end_date,
+                                time : node.field_arbeitszeitraum_end_time
+                            }
+                        }]
+                    },
+                    field_arbeitsdauer : {
+                        und : [{
+                            value : node.field_arbeitsdauer
+                        }]
+                    },
+                    field_stundenlohn : {
+                        und : [{
+                            value : node.field_stundenlohn
+                        }]
+                    },
+                    log : "send via ajax",
+                    path : {
+                        alias : ""
+                    },
+                };
+            }
+            
+            
             options = {
                 "resource_path" : this.resource_path({
                     "nid" : node.nid
