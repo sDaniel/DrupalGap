@@ -35,11 +35,11 @@ $('#drupalgap_user_login_submit').live('click',function() {
 	  
 	  // grab name and validate it
 	  var name = $('#drupalgap_user_login_name').val();
-	  if (!name) { alert('Please enter your user name.'); return false; }
+	  if (!name) { alert('Bitte geben Sie Ihren Benutzername ein.'); return false; }
 	  
 	  // grab pass and validate it
 	  var pass = $('#drupalgap_user_login_pass').val();
-	  if (!pass) { alert('Please enter your password.'); return false; }
+	  if (!pass) { alert('Bitte geben Sie Ihr Passwort ein.'); return false; }
 	  
 	  // Make call to the bundled user login service resource.
 	  options = {
