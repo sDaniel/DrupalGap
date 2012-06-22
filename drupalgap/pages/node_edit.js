@@ -475,7 +475,6 @@ $('#drupalgap_page_node_edit_delete').live('click',function(){
 });
 
 $('#get-latlong').live('click',function(){
-    
     function getGeolocation()
     {
         navigator.geolocation.getCurrentPosition(onGetGeolocationSuccess, onGetGeolocationError);
