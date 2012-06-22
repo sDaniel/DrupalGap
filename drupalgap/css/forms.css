@@ -12,8 +12,8 @@ fieldset {
 }
 
 .fieldset-wrapper {
-  padding: 2.4em 1em 1em 1em;
-  width: 90%;
+  padding: 2.4em 0em 1em 0em;
+  /*width: 90%; */
 }
 /*
 .fieldset-wrapper {
@@ -33,7 +33,7 @@ legend {
   color: #999;
   font-weight: 600;
   font-size: 0.923em;
-  left: 1em;
+  /*left: 1em;*/
   letter-spacing: 0.25em;
   line-height: normal;
   position: absolute;

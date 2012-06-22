@@ -5,6 +5,7 @@
 
 h2 {
 	font-size: 1.2em;
+  margin-bottom: 0.2em;
 }
 
 h3 {
@@ -12,7 +13,13 @@ h3 {
   margin-bottom: 0.15em;
 }
 
+h4 {
+  margin-bottom: 0.15em;
+}
 
+p {
+  margin-top: 0.25em;
+}
 
 /*
  * Links
@@ -83,7 +90,7 @@ h2 a:active {
 
 #map_canvas {
 	width: 100%;
-	height: 500px;
+	height: 400px;
 }
 
 

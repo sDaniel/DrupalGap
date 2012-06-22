@@ -9,7 +9,8 @@ $('#drupalgap_page_user').live('pageshow',function(){
 		// populate user account template place holders
 		
 		// user name
-		$('#drupalgap_page_user h1').html(drupalgap_user.name);
+		$('#drupalgap_page_user h1, #drupalgap_page_user_name').html(drupalgap_user.name);
+    $('#drupalgap_page_user_mail').html(drupalgap_user.mail);
 		
 		// user created date (Drupal's time value(s) must be multiplied by 1000 since JavaScript deals in milliseconds for the Unix Epoch????)
 		created = new Date(parseInt(drupalgap_user.created)*1000);
