@@ -3,25 +3,6 @@ $('#drupalgap_page_arbeit_finden_list').live('pageshow',function(){
         
         // Clear the list.
         $("#drupalgap_page_arbeitsangebote_list").html("");
-        
-        /* create content button
-         * 
-        // If the user doesn't have at least one create permission for each
-        // content type, hide the add button.
-        var can_create = false;
-        permissions = drupalgap_services_content_types_user_permissions();
-        $.each(permissions,function(index,value){
-            if (value.create) {
-                can_create = true; 
-                return;
-            }
-        });
-        if (!can_create)
-            $('#drupalgap_page_content_button_add').hide();
-        else
-            $('#drupalgap_page_content_button_add').show();
-        */
-        // Build content retrieve resource call options.
         views_options = {
             "path":"views_datasource/drupalgap_page_arbeit_finden_list",
             "load_from_local_storage":"0",
@@ -53,7 +34,7 @@ $('#drupalgap_page_arbeit_finden_list').live('pageshow',function(){
                     });
                 }
                 else {
-                    html = "Sorry, there is no published content.";
+                    html = "Sorry, es gibt keine veröffentlichten Inhalte.";
                     $("#drupalgap_page_arbeitsangebote_list").append($("<li></li>",{"html":html}));
                 }
                 

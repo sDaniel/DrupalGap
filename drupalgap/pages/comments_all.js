@@ -20,7 +20,7 @@ $('#drupalgap_page_comments_all').live('pageshow',function(){
 					});
 				}
 				else {
-					$("#drupalgap_page_comments_all_list").append($("<li></li>",{"html":"Sorry, there are no published comments."}));
+					$("#drupalgap_page_comments_all_list").append($("<li></li>",{"html":"Leider sind momentan noch keine Kommentare veröffentlicht."}));
 				}
 				
 				// Refresh the list.

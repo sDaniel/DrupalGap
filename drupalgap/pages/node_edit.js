@@ -253,19 +253,34 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
         
         // Grab input and validate.
         var title = $('#drupalgap_page_node_edit_title').val();
-        if (!title) { alert('Bitte geben Sie einen Titel ein.'); return false; }
-        
+        if (!title) {
+            navigator.notification.alert( 'Bitte geben Sie einen Titel ein.',  // message
+                    function() {return false;},         // callback
+                    'LocalMarket',            // title
+                    'OK');                  // buttonName	  
+                    }
+                                           
         // Arbeitsangebot
         if (drupalgap_page_node_edit_type == "arbeitsangebot") {
             
             // Berufsfelder
             var field_aa_berufsfelder = $('#field_aa_berufsfelder').val();
-            if (!field_aa_berufsfelder) { alert('Bitte geben Sie Berufsfelder ein.'); return false; }
-          
+            if (!field_aa_berufsfelder) {
+            navigator.notification.alert( 'Bitte geben Sie Berufsfelder ein.',  // message
+                    function() {return false;},         // callback
+                    'LocalMarket',            // title
+                    'OK');                  // buttonName	  
+                    }
+                                           
             // Arbeitsbeschreibung
             var field_arbeitsbeschreibung = $('#field_arbeitsbeschreibung').val();
-            if (!field_arbeitsbeschreibung) { alert('Bitte geben Sie eine Arbeitsbeschreibung ein.'); return false; }
-            
+            if (!field_arbeitsbeschreibung) {
+            navigator.notification.alert( 'Bitte geben Sie eine Arbeitsbeschreibung ein.',  // message
+                    function() {return false;},         // callback
+                    'LocalMarket',            // title
+                    'OK');                  // buttonName	  
+                    }
+                                           
             // Anforderungen
             var field_anforderungen = $('#field_anforderungen').val();
             //if (!field_anforderungen) { alert('Bitte geben Sie  Anforderungen ein.'); return false; }
@@ -290,16 +305,25 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
           
             // Arbeitsdauer
             var field_arbeitsdauer = $('#field_arbeitsdauer').val();
-            if (!field_arbeitsdauer) { alert('Bitte geben Sie eine Arbeitsdauer ein.'); return false; }
-          
+            if (!field_arbeitsdauer) {
+                        navigator.notification.alert( 'Bitte geben Sie eine Arbeitsdauer ein.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                                    }          
             // Stundenlohn
             var field_stundenlohn = $('#field_stundenlohn').val();
             //if (!field_stundenlohn) { alert('Bitte geben Sie einen Stundenlohn ein.'); return false; }
         } else {
             if ($('#drupalgap_page_node_edit_body').length) {
                 var body = $('#drupalgap_page_node_edit_body').val();
-                if (!body) { alert('Please enter some body content.'); return false; }
-            }
+                if (!body) {
+                        navigator.notification.alert( 'Bitte geben Sie den Inhalt ein.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                            } 
+                                           }
         }
                 
         if (!drupalgap_page_node_edit_nid) { // new nodes...
@@ -451,7 +475,7 @@ $('#drupalgap_page_node_edit_delete').live('click',function(){
                 alert("drupalgap_page_node_edit_delete - failed to load node (" + drupalgap_page_node_edit_nid + ")");
             },
             "success":function(node) {
-                if (confirm("Are you sure you want to delete \"" + node.title + "\"? This cannot be undone.")) {
+                if (confirm("Sind Sie sicher, dass Sie \"" + node.title + "\"? löschen möchten, das kann nicht rückgängig gemacht werden..")) {
                     node_delete_options = {
                         "nid":node.nid,
                         "error":function(jqXHR, textStatus, errorThrown) {
@@ -482,42 +506,9 @@ $('#get-latlong').live('click',function(){
     
     function onGetGeolocationSuccess(position)
     {
-        // html = "Latitude: " + position.coords.latitude + "<br />" +
-                // "Longitude: " + position.coords.longitude + "<br />" +
-                // "Altitude: " + position.coords.altitude + "<br />" + 
-                // "Accuracy: " + position.coords.accuracy + "<br />" + 
-                // "Altitude Accuracy: " + position.coords.altitudeAccuracy + "<br />" + 
-                // "Heading: " + position.coords.heading + "<br />" + 
-                // "Speed: " + position.coords.speed + "<br />" + 
-                // "Timestamp: " + new Date(position.timestamp) + "<br />";     
-        // $("#dGeolocation").html(html);
         
         $('#edit-field-arbeitsort-und-0-locpick-user-latitude').val(position.coords.latitude);
         $('#edit-field-arbeitsort-und-0-locpick-user-longitude').val(position.coords.longitude);
-        
-        // options = 
-        // {
-            // controls: false, 
-            // scrollwheel: false,
-            // latitude: position.coords.latitude, 
-            // longitude: position.coords.longitude, 
-            // markers: 
-            // [{
-                // latitude: position.coords.latitude, 
-                // longitude: position.coords.longitude
-            // }], 
-            // zoom: 15, 
-            // icon: 
-            // {
-            // image: "asset/img/map-marker.png", 
-                // shadow: false, 
-                // iconsize: [16, 24], 
-                // shadowsize: false, 
-                // iconanchor: [4, 19], 
-                // infowindowanchor: [8, 2]
-            // }
-        // };
-        // $("#dGoogle-map").gMap(options);
     }
     
     function onGetGeolocationError(error)
