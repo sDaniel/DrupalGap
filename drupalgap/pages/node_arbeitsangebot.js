@@ -209,7 +209,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
             phone = drupalgap_page_node.field_arbeitsort.und[0].phone;
             content += 'Mobilnummer: ' + phone
                     +  '<p>Bitte bewerben Sie sich unter dieser Nummer</p>'
-                    +  '<a data-role="button"  href="tel:' + phone + '">Jetzt ' + phone + ' anrufen</a><br/>';
+                    +  '<a data-role="button" data-transition="fade" data-theme="b" href="tel:' + phone + '">Jetzt ' + phone + ' anrufen</a><br/>';
         }
         + "</div>";
     }
