@@ -4,6 +4,7 @@ var processed_berufsfelder;
 var latitude;
 var longitude;
 var node;
+var own_position;
 
 $('#drupalgap_page_node').live('pageshow',function(){
     try {
@@ -54,21 +55,55 @@ $('#node-aa-show-map').live("click",function(){
         // Hide the content show the map        
         $('#drupalgap_page_node .content, #node-aa-show-map').hide();
         $('#drupalgap_page_node .map, #node-aa-show-details').show();
+
         if(node.title !== undefined ) {
             $('#drupalgap_page_node .map').add("<h2 class='title'>" + node.title + "</h2>");
         }
         
-        marker_content = "<h4>" + node.title + "</h4>";
+        var marker_content ="";
+        if(node.title !== undefined ) {
+            marker_content = "<h2 class='title'>" + node.title + "</h2>";
+        }
+        if(node.field_arbeitsbeschreibung !== undefined && node.field_arbeitsbeschreibung.und !== undefined && node.field_arbeitsbeschreibung.und.length > 0 ) {
+                marker_content += "<p><h3>Arbeitsbeschreibung:</h3> "
+                        + node.field_arbeitsbeschreibung.und[0].safe_value 
+                        + "</p>";
+            }
         $('#map_canvas').gmap('addMarker', {'position': latitude + ',' + longitude, 'bounds': true}).click(function() {
             $('#map_canvas').gmap('openInfoWindow', {'content': marker_content }, this);
         });
+        
+        function getGeolocation()
+        {
+            navigator.geolocation.getCurrentPosition(onGetGeolocationSuccess, onGetGeolocationError);
+        }
+        
+        function onGetGeolocationSuccess(position)
+        {
+          own_position = position;
+          var image = new google.maps.MarkerImage("../../images/area.png");
+            var own_marker_content = '<h2>Eigene Position</h2>';
+                            //+'<a id="get-directions" href="#" data-role="button" data-icon="search">Anfahrt</a>';
+          $('#map_canvas').gmap('addMarker', {'position': position.coords.latitude + ',' + position.coords.longitude, 'bounds': true, 'icon': image}).click(function() {
+            $('#map_canvas').gmap('openInfoWindow', {'content': own_marker_content}, this);
+          });
+        }
+        
+        function onGetGeolocationError(error)
+        {
+            html = "Error code: " + error.code + "<br />" + 
+                    "Error message: " + error.message + "<br />";
+            $("#dGeolocation").html(html);
+        }
+        
+        getGeolocation();
         
     } else {
         navigator.notification.alert( 'Keine Geoinformationen vorhanden um einen Karte darzustellen.',  // message
                                      function() {return false;},         // callback
                                      'LocalMarket',            // title
                                      'OK');                  // buttonName	  
-            }                            
+    }
 });
 
 $('#node-aa-show-details').live("click",function(){
@@ -76,6 +111,18 @@ $('#node-aa-show-details').live("click",function(){
     $('#drupalgap_page_node .map, #node-aa-show-details').hide();
 });
 
+/*
+$('#get-directions').click(function() {
+        $('#map_canvas').gmap('displayDirections', { 'origin': own_position.coords.latitude + ',' + own_position.coords.longitude, 'destination': latitude + ',' + longitude, 'travelMode': google.maps.DirectionsTravelMode.DRIVING }, { 'panel': document.getElementById('directions')}, function(success, response) {
+                if ( success ) {
+                        $('#results').show();
+                } else {
+                        $('#results').hide();
+                }
+        });
+        return false;
+});
+*/
 
 /*
  * Render the node
