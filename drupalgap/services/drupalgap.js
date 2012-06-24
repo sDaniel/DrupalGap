@@ -343,7 +343,7 @@ var drupalgap_services_drupalgap_user_register = {
       data += '&locations_country=' + encodeURIComponent(caller_options.locations_country);
       data += '&locations_locpick_user_latitude=' + encodeURIComponent(caller_options.locations_locpick_user_latitude);
       data += '&locations_locpick_user_longitude=' + encodeURIComponent(caller_options.locations_locpick_user_longitude);
-      //data += '&locations_phone=' + encodeURIComponent(caller_options.locations_phone);
+      data += '&locations_phone=' + encodeURIComponent(caller_options.locations_phone);
       
       
 			//, "save_to_local_storage":"0"

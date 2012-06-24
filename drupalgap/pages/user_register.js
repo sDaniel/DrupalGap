@@ -116,6 +116,14 @@ $('#drupalgap_user_register_submit').live('click',function() {
                    'LocalMarket',            // title
                    'OK');
                   }
+    var locations_phone = $('#edit-locations-0-phone').val();
+    if (!locations_phone) { 
+                   navigator.notification.alert( 'Bitte geben Sie Ihre Mobilnummer ein.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
+
 	  // Build service call options.
 	  //user_registration = drupalgap_services_user_register(name,mail,pass);
 	  options = {
@@ -130,7 +138,7 @@ $('#drupalgap_user_register_submit').live('click',function() {
     "locations_country":locations_country,
     "locations_locpick_user_latitude":locations_locpick_user_latitude,
     "locations_locpick_user_longitude":locations_locpick_user_longitude,
-    //"locations_phone":locations_phone,
+    "locations_phone":locations_phone,
 		
 		"error":function(jqXHR, textStatus, errorThrown) {
 			if (errorThrown) {
@@ -232,6 +240,7 @@ $('#user_register_fill').live('click',function(){
   var name = "Testuser" + Math.floor((Math.random()*1000)+1);
   var mail = Math.floor((Math.random()*1000)+1);
   var pass = "test" + Math.floor((Math.random()*100)+1)
+  
   // Arbeitsort
   var location_name = 'Kanzleramt';
   var location_street = 'Willy-Brandt-Straße 1';
@@ -240,6 +249,8 @@ $('#user_register_fill').live('click',function(){
   var location_country = 'de';
   var location_latitude = '52.520172';
   var location_longitude = '13.369343';
+  
+  var phone = '012312123';
 
   $('#drupalgap_user_register_name').val(name);
   $('#drupalgap_user_register_mail').val(mail + "@trash-mail.com");
@@ -253,6 +264,9 @@ $('#user_register_fill').live('click',function(){
   $('#edit-locations-0-country').val(location_country);
   $('#edit-locations-0-locpick-user-latitude').val(location_latitude);
   $('#edit-locations-0-locpick-user-longitude').val(location_longitude);
+  
+  $('#edit-locations-0-phone').val(phone);
+  
   
   var message = 'Sie können ihre Mail nach dem Absenden des Formulars unter http://www.trash-mail.com/index.php?mail=' 
                   + encodeURIComponent(mail) + ' abrufen. Ihr Passwort lautet: ' + pass;
