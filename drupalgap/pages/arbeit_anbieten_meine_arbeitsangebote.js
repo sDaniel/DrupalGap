@@ -4,24 +4,6 @@ $('#drupalgap_page_arbeit_anbieten_meine_angebote').live('pageshow',function(){
         // Clear the list.
         $("#meine_angebote_list").html("");
         
-        /* create content button
-         * 
-        // If the user doesn't have at least one create permission for each
-        // content type, hide the add button.
-        var can_create = false;
-        permissions = drupalgap_services_content_types_user_permissions();
-        $.each(permissions,function(index,value){
-            if (value.create) {
-                can_create = true; 
-                return;
-            }
-        });
-        if (!can_create)
-            $('#drupalgap_page_content_button_add').hide();
-        else
-            $('#drupalgap_page_content_button_add').show();
-        */
-        // Build content retrieve resource call options.
         views_options = {
             "path":"views_datasource/drupalgap_page_arbeit_anbieten_meine_angebote",
             "load_from_local_storage":"0",
@@ -42,10 +24,6 @@ $('#drupalgap_page_arbeit_anbieten_meine_angebote').live('pageshow',function(){
                     $.each(content.nodes,function(index,obj){
                         html = "<h2 class='title'><a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'>"
                                + obj.node.title  + "</a></h2>";
-                               //+ "<a href='node_arbeitsangebot.html' id='" + obj.node.nid + "'>"
-                               //+ "<span class='payment'>" + obj.node.payment  + "</span>" 
-                               //+ "<span class='distance'>" + obj.node.distance  + "</span>"
-                               //+ "</a>";
                         $("#meine_angebote_list").append($("<li></li>",{"html":html}));
                     });
                 }

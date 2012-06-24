@@ -10,7 +10,10 @@ $('#drupalgap_page_user_register').live('pageshow',function(){
     */
   try {
 	    if (drupalgap_user.uid != 0) {
-          alert("Already logged in!");
+          navigator.notification.alert( 'Bereits angemeldet.',  // message
+                                        function() {return false;},         // callback
+                                        'LocalMarket',            // title
+                                        'OK');
           $.mobile.changePage("dashboard.html", "slideup");
         }
   }
@@ -29,62 +32,92 @@ $('#drupalgap_user_register_submit').live('click',function() {
 	  
 	  // Grab name and validate it.
 	  var name = $('#drupalgap_user_register_name').val();
-	  if (!name) { alert('Bitte geben Sie Ihren Benutzernamen ein.'); return false; }
+	  if (!name) { 
+                navigator.notification.alert( 'Bitte geben Sie Ihren Benutzernamen ein.',  // message
+                                             function() {return false;},         // callback
+                                             'LocalMarket',            // title
+                                             'OK');                                          
+                 }
 	  
 	  // Grab mail and validate it.
 	  var mail = $('#drupalgap_user_register_mail').val();
-	  if (!mail) { alert('Bitte geben Sie Ihre E-Mail Adresse ein.'); return false; }
+	  if (!mail) {
+                    navigator.notification.alert( 'Bitte geben Sie Ihre E-Mail Adresse ein.',  // message
+                    function() {return false;},         // callback
+                    'LocalMarket',            // title
+                    'OK');
+                 }
 	  
 	  // Grab passwords, compare and validate. 
     
 	  var pass = $('#drupalgap_user_register_pass').val();
-	  if (!pass) { alert('Bitte Passwort eingben.'); return false; }
+	  if (!pass) {
+                   navigator.notification.alert( 'Bitte Passwort eingben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                 }
+                                          
 	  var pass2 = $('#drupalgap_user_register_confirm_pass').val();
-	  if (!pass2) { alert('Bitte Passwort bestätigen.'); return false; }
-	  if (pass != pass2) { alert("Passwords do not match."); return false; }
-    var locations_name = $('#edit-locations-0-name').val();
-    if (!locations_name) { alert('Bitte Ortsname eingben.'); return false; }
+	  if (!pass2) { 
+                   navigator.notification.alert( 'Bitte Passwort bestätigen.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
+                                          
+	  if (pass != pass2) { 
+                   navigator.notification.alert( 'Passwörter stimmen nicht überein.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                         }
+	  var locations_name = $('#edit-locations-0-name').val();
+    if (!locations_name) { 
+                   navigator.notification.alert( 'Bitte Ortsname eingeben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
     var locations_street = $('#edit-locations-0-street').val();
-    if (!locations_street) { alert('Bitte Strasse eingben.'); return false; }
+    if (!locations_street) { 
+                   navigator.notification.alert( 'Bitte Straße eingeben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
     var locations_additional = $('#edit-locations-0-additional').val();
     var locations_postal_code = $('#edit-locations-0-postal-code').val();
-    if (!locations_postal_code) { alert('Bitte PLZ eingben.'); return false; }
+    if (!locations_postal_code) { 
+                   navigator.notification.alert( 'Bitte PLZ eingeben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
     var locations_city = $('#edit-locations-0-city').val();
-    if (!locations_city) { alert('Bitte Stadt eingben.'); return false; }
+    if (!locations_city) { 
+                   navigator.notification.alert( 'Bitte Stadt eingeben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
     var locations_country = $('#edit-locations-0-country').val();
     var locations_locpick_user_latitude = $('#edit-locations-0-locpick-user-latitude').val();
-    if (!locations_locpick_user_latitude) { alert('Bitte Längengrad eingben.'); return false; }
+    if (!locations_locpick_user_latitude) { 
+                   navigator.notification.alert( 'Bitte Längengrad eingeben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
     var locations_locpick_user_longitude = $('#edit-locations-0-locpick-user-longitude').val();
-    if (!locations_locpick_user_longitude) { alert('Bitte Breitengrad eingben.'); return false; }
-    
-    /*
-    var name = "abc";
-    var mail = "a@b.d";
-    var pass = "p";
-    var locations_name = "mein_zuhause";
-    var locations_street = "kirchenstr_23";
-    var locations_additional = "";
-    var locations_postal_code = "76344";
-    var locations_city = "Eggenstein";
-    var locations_country = "de";
-    var locations_locpick_user_latitude = "123";
-    var locations_locpick_user_longitude = "321";
-    var locations_phone = "07135 1234";
-    */
-	  
+    if (!locations_locpick_user_longitude) { 
+                   navigator.notification.alert( 'Bitte Breitengrad eingeben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
 	  // Build service call options.
 	  //user_registration = drupalgap_services_user_register(name,mail,pass);
-    /*
-    locations_name,
-      locations_street,
-      locations_additional,
-      locations_postal_code,
-      locations_city,
-      locations_country,
-      locations_locpick_user_latitude
-      locations_locpick_user_longitude
-      locations_phone
-      */
 	  options = {
 		"name":name,
 		"mail":mail,

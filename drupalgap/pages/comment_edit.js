@@ -19,12 +19,12 @@ $('#drupalgap_page_comment_edit').live('pageshow',function(){
 				// Check the status of this node's comments.
 				switch (drupalgap_page_comment_edit_node.comment) {
 					case "0": // Comments hidden.
-						alert("Comments are hidden for this node.");
+						alert("Kommentare sind versteckt.");
 						$.mobile.changePage("node.html");
 						return false;
 						break;
 					case "1": // Comments closed.
-						alert("Comments are closed for this node.");
+						alert("Kommentare sind geschlossen.");
 						$.mobile.changePage("node.html");
 						return false;
 						break;
@@ -51,11 +51,11 @@ $('#drupalgap_page_comment_edit').live('pageshow',function(){
 					options = {
 						"cid":drupalgap_page_comment_edit_cid,
 						"error":function(jqXHR, textStatus, errorThrown) {
-							alert("drupalgap_page_comment_edit - Failed to load comment! (" + drupalgap_page_comment_edit_cid + ")");
+							alert("drupalgap_page_comment_edit - Kommentar konnte nicht geladen werden! (" + drupalgap_page_comment_edit_cid + ")");
 						},
 						"success":function(comment) {
 							// Set header text.
-							$('#drupalgap_page_comment_edit h1').html("Edit Comment");
+							$('#drupalgap_page_comment_edit h1').html("Kommentar bearbeiten");
 							
 							// Add comment details to form fields.
 							$('#drupalgap_page_comment_edit_subject').val(comment.subject);
@@ -82,7 +82,7 @@ $('#drupalgap_page_comment_edit').live('pageshow',function(){
 					// New comment.
 					
 					// Set header text.
-					$('#drupalgap_page_comment_edit h1').html("Add Comment");
+					$('#drupalgap_page_comment_edit h1').html("Kommentar hinzufügen");
 				}
 			},
 		};
@@ -192,7 +192,7 @@ $('#drupalgap_page_comment_edit_delete').live('click',function(){
 				alert("drupalgap_page_comment_edit_delete - failed to comment (" + drupalgap_page_comment_edit_cid + ")");
 			},
 			"success":function(comment) {
-				if (confirm("Are you sure you want to delete \"" + comment.subject + "\"? This cannot be undone.")) {
+				if (confirm("Sind Sie sicher, dass Sie \"" + comment.subject + "\"? löschen möchten. Dies kann nicht rückgängig gemacht werden.")) {
 					comment_delete_options = {
 						"cid":comment.cid,
 						"error":function(jqXHR, textStatus, errorThrown) {

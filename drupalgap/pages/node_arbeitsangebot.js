@@ -58,19 +58,17 @@ $('#node-aa-show-map').live("click",function(){
             $('#drupalgap_page_node .map').add("<h2 class='title'>" + node.title + "</h2>");
         }
         
-        // $('#map_canvas').gmap().bind('init', function(ev, map) {
-            // $('#map_canvas').gmap('addMarker', {'position': latitude + ',' + longitude , 'bounds': true}).click(function() {
-                // $('#map_canvas').gmap('openInfoWindow', {'content': 'Hello World!'}, this);
-            // });
-        // });
         marker_content = "<h4>" + node.title + "</h4>";
         $('#map_canvas').gmap('addMarker', {'position': latitude + ',' + longitude, 'bounds': true}).click(function() {
             $('#map_canvas').gmap('openInfoWindow', {'content': marker_content }, this);
         });
         
     } else {
-        alert("Keine Geoinformationen vorhanden um einen Karte darzustellen");
-    }
+        navigator.notification.alert( 'Keine Geoinformationen vorhanden um einen Karte darzustellen.',  // message
+                                     function() {return false;},         // callback
+                                     'LocalMarket',            // title
+                                     'OK');                  // buttonName	  
+            }                            
 });
 
 $('#node-aa-show-details').live("click",function(){
@@ -102,46 +100,13 @@ function drupalgap_page_node_success(drupalgap_page_node) {
         // Synchronously.
         var berufsfelder_taxonomy;
         var stichworte_taxonomy;
-        /* Simple Ajax request:
-         * (not yet working because of cross origin policy)
-        
-        if(processed_berufsfelder == undefined) {
-          processed_berufsfelder = true;
-          $.ajax({
-            url: drupalgap_settings.site_path + '/drupalgap/taxonomy_vocabulary/getTree',
-            type: 'POST',
-            data: {vid : 3},
-            //dataType: options.dataType,
-            //async: options.async,
-            error: function (jqXHR, textStatus, errorThrown) {
-                  berufsfelder_taxonomy = {
-                      "jqXHR":jqXHR,
-                      "textStatus":textStatus,
-                      "errorThrown":errorThrown,
-                  };
-            },
-            success: function (data) {
-              berufsfelder_taxonomy = data;
-              $('#berufsfelder-headline').append('Berufsfelder: '); 
-              $.each(drupalgap_page_node.field_aa_berufsfelder.und, function(index, value) {
-                $.each(berufsfelder_taxonomy, function(index, berufsfeld) {
-                  if (berufsfeld.tid == value.tid) {
-                    $('#berufsfelder-list').add('li').append('<li class="inline-list">' + berufsfeld.name + ', </li>'); 
-                  }
-                });
-              });
-              }
-          });
-        }
-        content += "<div id='berufsfelder'><h3 id='berufsfelder-headline'></h3><ul id='berufsfelder-list'></ul></div>";
-        */
+
         berufsfelder_taxonomy = [{"tid":"1","vid":"3","name":"B\u00fcrowesen","description":"","format":"filtered_html","weight":"0","depth":0,"parents":["0"]},{"tid":"3","vid":"3","name":"Allgemeine B\u00fcrofachkr\u00e4fte","description":"","format":"filtered_html","weight":"0","depth":1,"parents":["1"]},{"tid":"4","vid":"3","name":"Buchhalter","description":"","format":"filtered_html","weight":"0","depth":1,"parents":["1"]},{"tid":"5","vid":"3","name":"B\u00fcrohilfskr\u00e4fte","description":"","format":"filtered_html","weight":"0","depth":1,"parents":["1"]},{"tid":"11","vid":"3","name":"Management","description":"","format":"filtered_html","weight":"0","depth":0,"parents":["0"]},{"tid":"7","vid":"3","name":"Sozialwesen","description":"","format":"filtered_html","weight":"0","depth":0,"parents":["0"]},{"tid":"8","vid":"3","name":"Altenpflege & Altenbetreuung","description":"","format":"filtered_html","weight":"0","depth":1,"parents":["7"]},{"tid":"9","vid":"3","name":"Erzieher & Kinderpfleger","description":"","format":"filtered_html","weight":"0","depth":1,"parents":["7"]},{"tid":"10","vid":"3","name":"Hauspflege & Familienpflege","description":"","format":"filtered_html","weight":"0","depth":1,"parents":["7"]}];
         
         var berufsfelder_html = "";
         $.each(drupalgap_page_node.field_aa_berufsfelder.und, function(index, value) {
           $.each(berufsfelder_taxonomy, function(index, berufsfeld) {
-            if (berufsfeld.tid == value.tid) {
-              //$('#berufsfelder-list').add('li').append('<li>' + berufsfeld.name + ', </li>'); 
+            if (berufsfeld.tid == value.tid) { 
               berufsfelder_html += '<li class="inline-list"> ' + berufsfeld.name + ', </li>';
             }
           });
@@ -151,21 +116,13 @@ function drupalgap_page_node_success(drupalgap_page_node) {
     }
     // Stichworte
     if(drupalgap_page_node.field_stichworte !== undefined && drupalgap_page_node.field_stichworte.length > 0 && drupalgap_page_node.field_stichworte.und !== undefined && drupalgap_page_node.field_stichworte.und.length > 0) {      
-    /* org id output
-        content += "<div class='stichworte'>Stichworte: ";
-        $.each(drupalgap_page_node.field_stichworte.und, function(index, value) {
-            content += value.tid + ", "; 
-        });
-        content += "</div>";
-        */
         /* TODO: ajaxify */
         stichworte_taxonomy = [{"tid":"26","vid":"5","name":"Fahrrad","description":"","format":"filtered_html","weight":"0","depth":0,"parents":["0"]},{"tid":"20","vid":"5","name":"F\u00fchrerschein","description":null,"format":null,"weight":"0","depth":0,"parents":["0"]},{"tid":"22","vid":"5","name":"Tauchschein","description":null,"format":null,"weight":"0","depth":0,"parents":["0"]},{"tid":"27","vid":"5","name":"Transporter","description":"","format":"filtered_html","weight":"0","depth":0,"parents":["0"]}];
         
         var stichwort_html = "";
         $.each(drupalgap_page_node.field_stichworte.und, function(index, value) {
           $.each(stichworte_taxonomy, function(index, stichwort) {
-            if (stichwort.tid == value.tid) {
-              //$('#berufsfelder-list').add('li').append('<li>' + stichwort.name + ', </li>'); 
+            if (stichwort.tid == value.tid) { 
               stichwort_html += '<li class="inline-list"> ' + stichwort.name + ', </li>';
             }
           });
