@@ -60,7 +60,8 @@ var drupalgap_services_node_create = {
                             locpick : {
                                 user_latitude : node.field_arbeitsort_latitude,
                                 user_longitude : node.field_arbeitsort_longitude
-                            }
+                            },
+                            phone : node.field_arbeitsort_phone
                         }]
                     },
                     field_arbeitszeitraum : {

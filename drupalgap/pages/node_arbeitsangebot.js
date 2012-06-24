@@ -111,7 +111,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
             }
           });
         });
-        content += "<div id='berufsfelder'><h3 id='berufsfelder-headline'>Berufsfelder: </h3><ul id='berufsfelder-list'>" 
+        content += "<div id='berufsfelder'><h3 id='berufsfelder-headline' style='margin-right: 0.5em;'>Berufsfelder: </h3><ul id='berufsfelder-list'>" 
                   + berufsfelder_html + "</ul></div>";
     }
     // Stichworte
@@ -127,7 +127,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
             }
           });
         });
-        content += "<div id='stichworte'><h3 id='stichworte-headline'>Stichworte: </h3><ul id='stichworte-list'>" 
+        content += "<div id='stichworte'><h3 id='stichworte-headline' style='margin-right: 0.5em;'>Stichworte: </h3><ul id='stichworte-list'>" 
                   + stichwort_html + "</ul></div>";
     }
     
@@ -204,12 +204,18 @@ function drupalgap_page_node_success(drupalgap_page_node) {
             content += "Longitude: "
                     +  longitude
                     +  "<br/>";
+        } // Mobilnummer field_arbeitsort_phone
+        if(drupalgap_page_node.field_arbeitsort.und[0].phone !== undefined && drupalgap_page_node.field_arbeitsort.und[0].phone !== "" ) {
+            phone = drupalgap_page_node.field_arbeitsort.und[0].phone;
+            content += 'Mobilnummer: ' + phone
+                    +  '<p>Bitte bewerben Sie sich unter dieser Nummer</p>'
+                    +  '<a data-role="button"  href="tel:' + phone + '">Jetzt ' + phone + ' anrufen</a><br/>';
         }
         + "</div>";
     }
     
-    $('#drupalgap_page_node .content').html(content);
-
+    // Attach event handlers and render via jQM
+    $('#drupalgap_page_node .content').html(content).trigger('create');
     
     // Set edit button visibility
     // If user is not user 1 and user is not node author, hide the edit button, otherwise show it.
@@ -247,7 +253,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
         count = parseInt(drupalgap_page_node.comment_count);
         if (count > 0) {
             text = "View " + count + " Comments";
-            if (count == 1) { text = "View " + count + " Comment" }
+            if (count == 1) { text = "count + " Kommentare abrufen" }
             $('#drupalgap_page_node_button_comments span').html(text);
         }
         else {

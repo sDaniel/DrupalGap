@@ -78,8 +78,12 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                     '<div>',
                         '<div><a href="#" data-role="button" id="get-latlong">Aktuelle Koordinaten eintragen</a></div>',
                     '</div>',
-                    '<div class="description">Geografische Breite und Länge (GPS). Wenn die Felder leer bleiben, versucht das System die Daten zu ermitteln.',
-                 '</div></div>',
+                    '<div class="description">Geografische Breite und Länge (GPS). Wenn die Felder leer bleiben, versucht das System die Daten zu ermitteln.</div>',
+                    '<div class="form-item form-type-textfield form-item-field-arbeitsort-und-0-phone">',
+                      '<label for="edit-field-arbeitsort-und-0-phone">Phone number </label>',
+                     '<input type="text" id="edit-field-arbeitsort-und-0-phone" name="field_arbeitsort[und][0][phone]" value="" size="31" maxlength="31" class="form-text">',
+                    '</div>',
+                 '</div>',
                 '</fieldset>',
 
                 '<hr/>',
@@ -217,6 +221,8 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                       $('#edit-field-arbeitsort-und-0-country').val(node.field_arbeitsort.und[0].country);
                       $('#edit-field-arbeitsort-und-0-locpick-user-latitude').val(node.field_arbeitsort.und[0].locpick.user_latitude);
                       $('#edit-field-arbeitsort-und-0-locpick-user-longitude').val(node.field_arbeitsort.und[0].locpick.user_longitude);
+                      $('#edit-field-arbeitsort-und-0-phone').val(node.field_arbeitsort.und[0].phone);
+                      
                       
                       // Arbeitszeitraum
                       
@@ -290,13 +296,43 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
             
             // Arbeitsort
             var field_arbeitsort_name = $('#edit-field-arbeitsort-und-0-name').val();
+            if (!field_arbeitsort_name) {
+                        navigator.notification.alert( 'Bitte geben Sie einen Arbeitsort incl Name an.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                                    }   
             var field_arbeitsort_street = $('#edit-field-arbeitsort-und-0-street').val();
+            if (!field_arbeitsort_street) {
+                        navigator.notification.alert( 'Bitte geben Sie einen Arbeitsort incl Strasse an.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                                    }   
             var field_arbeitsort_postal_code = $('#edit-field-arbeitsort-und-0-postal-code').val();
+            if (!field_arbeitsort_postal_code) {
+                        navigator.notification.alert( 'Bitte geben Sie einen Arbeitsort incl PLZ an.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                                    }   
             var field_arbeitsort_city = $('#edit-field-arbeitsort-und-0-city').val();
+            if (!field_arbeitsort_city) {
+                        navigator.notification.alert( 'Bitte geben Sie einen Arbeitsort incl Stadt an.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                                    }  
             var field_arbeitsort_country = $('#edit-field-arbeitsort-und-0-country').val();
             var field_arbeitsort_latitude = $('#edit-field-arbeitsort-und-0-locpick-user-latitude').val();
             var field_arbeitsort_longitude = $('#edit-field-arbeitsort-und-0-locpick-user-longitude').val();
-          
+            var field_arbeitsort_phone = $('#edit-field-arbeitsort-und-0-phone').val();
+            if (!field_arbeitsort_phone) {
+                        navigator.notification.alert( 'Bitte geben Sie eine Mobilnummer an.',  // message
+                        function() {return false;},         // callback
+                        'LocalMarket',            // title
+                        'OK');                  // buttonName	  
+                                    }    
             // Arbeitszeitraum
             var field_arbeitszeitraum_start_date = $('#edit-field-arbeitszeitraum-und-0-value-datepicker-popup-0').val();
             var field_arbeitszeitraum_start_time = $('#edit-field-arbeitszeitraum-und-0-value-timeEntry-popup-1').val();
@@ -323,7 +359,7 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
                         'LocalMarket',            // title
                         'OK');                  // buttonName	  
                             } 
-                                           }
+              }
         }
                 
         if (!drupalgap_page_node_edit_nid) { // new nodes...
@@ -365,6 +401,9 @@ $('#drupalgap_page_node_edit_submit').live('click',function(){
                 options.node["field_arbeitsort_country"] = field_arbeitsort_country;
                 options.node["field_arbeitsort_latitude"] = field_arbeitsort_latitude;
                 options.node["field_arbeitsort_longitude"] = field_arbeitsort_longitude;
+                options.node["field_arbeitsort_phone"] = field_arbeitsort_phone;
+                
+                
 
                 // Arbeitszeitraum
                 options.node["field_arbeitszeitraum_start_date"] = field_arbeitszeitraum_start_date;
@@ -551,6 +590,8 @@ $('#drupalgap_page_node_edit_fill').live('click',function(){
     var field_arbeitsort_country = 'de';
     var field_arbeitsort_latitude = '52.520172';
     var field_arbeitsort_longitude = '13.369343';
+    var field_arbeitsort_phone = '+4930220700';
+    
   
 
     // Arbeitsdauer
@@ -571,6 +612,8 @@ $('#drupalgap_page_node_edit_fill').live('click',function(){
     $('#edit-field-arbeitsort-und-0-country').val(field_arbeitsort_country);
     $('#edit-field-arbeitsort-und-0-locpick-user-latitude').val(field_arbeitsort_latitude);
     $('#edit-field-arbeitsort-und-0-locpick-user-longitude').val(field_arbeitsort_longitude);
+    $('#edit-field-arbeitsort-und-0-phone').val(field_arbeitsort_phone);
+    
     // Arbeitszeitraum
     $('#edit-field-arbeitszeitraum-und-0-value-datepicker-popup-0').val("2012/10/22");
     $('#edit-field-arbeitszeitraum-und-0-value-timeEntry-popup-1').val("08:30");
