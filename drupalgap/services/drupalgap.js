@@ -279,22 +279,73 @@ var drupalgap_services_drupalgap_user_register = {
 		
 			// validate input
 			if (!caller_options.name) {
-				alert("drupalgap_services_drupalgap_user_register - name empty");
+				alert("drupalgap_services_user_register - name empty");
 				return false;
 			}
 			if (!caller_options.mail) {
-				alert("drupalgap_services_drupalgap_user_register - mail empty");
+				alert("drupalgap_services_user_register - mail empty");
 				return false;
 			}
 			if (!caller_options.pass) {
-				alert("drupalgap_services_drupalgap_user_register - pass empty");
+				alert("drupalgap_services_user_register - pass empty");
 				return false;
 			}
+      
+      /* Sample data
+			name	
+      mail	e@mail.com
+      pass[pass1]	pw
+      pass[pass2]	pw
+      timezone	Europe/Berlin
+      locations[0][name]	name d o
+      locations[0][street]	str
+      locations[0][additional]	zus
+      locations[0][postal_code]	76344
+      locations[0][city]	stadt
+      locations[0][country]	de
+      locations[0][locpick][user_latitude]	90
+      locations[0][locpick][user_longitude]	321
+      locations[0][phone]	01520496
+      
+      locations[0][name]
+      locations[0][street]
+      locations[0][additional]
+      locations[0][postal_code]
+      locations[0][city]
+      locations[0][country]
+      locations[0][locpick][user_latitude]
+      locations[0][locpick][user_longitude]
+      locations[0][phone]
+      */
 			
 			// Build the options for the service call.
 			data = 'name=' + encodeURIComponent(caller_options.name);
 			data += '&mail=' + encodeURIComponent(caller_options.mail);
 			data += '&pass=' + encodeURIComponent(caller_options.pass);
+      
+/*
+      data += '&locations[0][name]=' + encodeURIComponent(caller_options.locations_name);
+      data += '&locations[0][street]=' + encodeURIComponent(caller_options.locations_street);
+      data += '&locations[0][additional]=' + encodeURIComponent(caller_options.locations_additional);
+      data += '&locations[0][postal_code]=' + encodeURIComponent(caller_options.locations_postal_code);
+      data += '&locations[0][city]=' + encodeURIComponent(caller_options.locations_city);
+      data += '&locations[0][country]=' + encodeURIComponent(caller_options.locations_country);
+      data += '&locations[0][locpick][user_latitude]=' + encodeURIComponent(caller_options.locations_locpick_user_latitude);
+      data += '&locations[0][locpick][user_longitude]=' + encodeURIComponent(caller_options.locations_locpick_user_longitude);
+      data += '&locations[0][phone]=' + encodeURIComponent(caller_options.locations_phone);
+      */
+      
+      data += '&locations_name=' + encodeURIComponent(caller_options.locations_name);
+      data += '&locations_street=' + encodeURIComponent(caller_options.locations_street);
+      data += '&locations_additional=' + encodeURIComponent(caller_options.locations_additional);
+      data += '&locations_postal_code=' + encodeURIComponent(caller_options.locations_postal_code);
+      data += '&locations_city=' + encodeURIComponent(caller_options.locations_city);
+      data += '&locations_country=' + encodeURIComponent(caller_options.locations_country);
+      data += '&locations_locpick_user_latitude=' + encodeURIComponent(caller_options.locations_locpick_user_latitude);
+      data += '&locations_locpick_user_longitude=' + encodeURIComponent(caller_options.locations_locpick_user_longitude);
+      //data += '&locations_phone=' + encodeURIComponent(caller_options.locations_phone);
+      
+      
 			//, "save_to_local_storage":"0"
 			options = {
 				"resource_path":this.resource_path,
@@ -316,7 +367,7 @@ var drupalgap_services_drupalgap_user_register = {
 			drupalgap_services.resource_call(options);
 		}
 		catch (error) {
-			console.log("drupalgap_services_drupalgap_user_register");
+			console.log("drupalgap_services_user_register");
 			console.log(error);	
 		}
 	},

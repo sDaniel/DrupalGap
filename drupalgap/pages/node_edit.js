@@ -78,7 +78,7 @@ $('#drupalgap_page_node_edit').live('pageshow',function(){
                     '<div>',
                         '<div><a href="#" data-role="button" id="get-latlong">Aktuelle Koordinaten eintragen</a></div>',
                     '</div>',
-                    '<div class="description">Geografische Breite und Länge. Wenn die Felder leer bleiben, versucht das System die Daten zu ermitteln.',
+                    '<div class="description">Geografische Breite und Länge (GPS). Wenn die Felder leer bleiben, versucht das System die Daten zu ermitteln.',
                  '</div></div>',
                 '</fieldset>',
 

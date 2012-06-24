@@ -21,7 +21,7 @@ var drupalgap_services_user_login = {
 	"resource_call":function (caller_options) {
 		try {
 			if (!caller_options.name || !caller_options.pass) { return false; }
-			
+      
 			// Build service call data string.
 			data = 'username=' + encodeURIComponent(caller_options.name);
 			data += '&password=' + encodeURIComponent(caller_options.pass);
@@ -244,15 +244,54 @@ var drupalgap_services_user_register = {
 				alert("drupalgap_services_user_register - mail empty");
 				return false;
 			}
+      /*
 			if (!caller_options.pass) {
 				alert("drupalgap_services_user_register - pass empty");
 				return false;
-			}
+			}*/
+      
+      /* Sample data
+			name	
+      mail	e@mail.com
+      pass[pass1]	pw
+      pass[pass2]	pw
+      timezone	Europe/Berlin
+      locations[0][name]	name d o
+      locations[0][street]	str
+      locations[0][additional]	zus
+      locations[0][postal_code]	76344
+      locations[0][city]	stadt
+      locations[0][country]	de
+      locations[0][locpick][user_latitude]	90
+      locations[0][locpick][user_longitude]	321
+      locations[0][phone]	01520496
+      
+      locations[0][name]
+      locations[0][street]
+      locations[0][additional]
+      locations[0][postal_code]
+      locations[0][city]
+      locations[0][country]
+      locations[0][locpick][user_latitude]
+      locations[0][locpick][user_longitude]
+      locations[0][phone]
+      */
 			
 			// Build the options for the service call.
 			data = 'name=' + encodeURIComponent(caller_options.name);
 			data += '&mail=' + encodeURIComponent(caller_options.mail);
-			data += '&pass=' + encodeURIComponent(caller_options.pass);
+			//data += '&pass=' + encodeURIComponent(caller_options.pass);
+      data += '&locations[0][name]=' + encodeURIComponent(caller_options.locations_name);
+      data += '&=locations[0][street]=' + encodeURIComponent(caller_options.locations_street);
+      data += '&=locations[0][additional]=' + encodeURIComponent(caller_options.locations_additional);
+      data += '&=locations[0][postal_code]=' + encodeURIComponent(caller_options.locations_postal_code);
+      data += '&=locations[0][city]=' + encodeURIComponent(caller_options.locations_city);
+      data += '&=locations[0][country]=' + encodeURIComponent(caller_options.locations_country);
+      data += '&=locations[0][locpick][user_latitude]=' + encodeURIComponent(caller_options.locations_locpick_user_latitude);
+      data += '&=locations[0][locpick][user_longitude]=' + encodeURIComponent(caller_options.locations_locpick_user_longitude);
+      data += '&=locations[0][phone]=' + encodeURIComponent(caller_options.locations_phone);
+      
+      
 			//, "save_to_local_storage":"0"
 			options = {
 				"resource_path":this.resource_path,

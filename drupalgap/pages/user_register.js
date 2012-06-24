@@ -36,18 +36,68 @@ $('#drupalgap_user_register_submit').live('click',function() {
 	  if (!mail) { alert('Bitte geben Sie Ihre E-Mail Adresse ein.'); return false; }
 	  
 	  // Grab passwords, compare and validate. 
+    
 	  var pass = $('#drupalgap_user_register_pass').val();
 	  if (!pass) { alert('Bitte Passwort eingben.'); return false; }
 	  var pass2 = $('#drupalgap_user_register_confirm_pass').val();
 	  if (!pass2) { alert('Bitte Passwort bestätigen.'); return false; }
 	  if (pass != pass2) { alert("Passwords do not match."); return false; }
+    var locations_name = $('#edit-locations-0-name').val();
+    if (!locations_name) { alert('Bitte Ortsname eingben.'); return false; }
+    var locations_street = $('#edit-locations-0-street').val();
+    if (!locations_street) { alert('Bitte Strasse eingben.'); return false; }
+    var locations_additional = $('#edit-locations-0-additional').val();
+    var locations_postal_code = $('#edit-locations-0-postal-code').val();
+    if (!locations_postal_code) { alert('Bitte PLZ eingben.'); return false; }
+    var locations_city = $('#edit-locations-0-city').val();
+    if (!locations_city) { alert('Bitte Stadt eingben.'); return false; }
+    var locations_country = $('#edit-locations-0-country').val();
+    var locations_locpick_user_latitude = $('#edit-locations-0-locpick-user-latitude').val();
+    if (!locations_locpick_user_latitude) { alert('Bitte Längengrad eingben.'); return false; }
+    var locations_locpick_user_longitude = $('#edit-locations-0-locpick-user-longitude').val();
+    if (!locations_locpick_user_longitude) { alert('Bitte Breitengrad eingben.'); return false; }
+    
+    /*
+    var name = "abc";
+    var mail = "a@b.d";
+    var pass = "p";
+    var locations_name = "mein_zuhause";
+    var locations_street = "kirchenstr_23";
+    var locations_additional = "";
+    var locations_postal_code = "76344";
+    var locations_city = "Eggenstein";
+    var locations_country = "de";
+    var locations_locpick_user_latitude = "123";
+    var locations_locpick_user_longitude = "321";
+    var locations_phone = "07135 1234";
+    */
 	  
 	  // Build service call options.
 	  //user_registration = drupalgap_services_user_register(name,mail,pass);
+    /*
+    locations_name,
+      locations_street,
+      locations_additional,
+      locations_postal_code,
+      locations_city,
+      locations_country,
+      locations_locpick_user_latitude
+      locations_locpick_user_longitude
+      locations_phone
+      */
 	  options = {
 		"name":name,
 		"mail":mail,
 		"pass":pass,
+    "locations_name":locations_name,
+    "locations_street":locations_street,
+    "locations_additional":locations_additional,
+    "locations_postal_code":locations_postal_code,
+    "locations_city":locations_city,
+    "locations_country":locations_country,
+    "locations_locpick_user_latitude":locations_locpick_user_latitude,
+    "locations_locpick_user_longitude":locations_locpick_user_longitude,
+    //"locations_phone":locations_phone,
 		
 		"error":function(jqXHR, textStatus, errorThrown) {
 			if (errorThrown) {
@@ -118,6 +168,27 @@ $('#drupalgap_user_register_submit').live('click',function() {
   
 });
 
+$('#get-latlong').live('click',function(){
+    function getGeolocation()
+    {
+        navigator.geolocation.getCurrentPosition(onGetGeolocationSuccess, onGetGeolocationError);
+    }
+    
+    function onGetGeolocationSuccess(position)
+    {
+        $('#edit-locations-0-locpick-user-latitude').val(position.coords.latitude);
+        $('#edit-locations-0-locpick-user-longitude').val(position.coords.longitude);
+    }
+    
+    function onGetGeolocationError(error)
+    {
+        html = "Error code: " + error.code + "<br />" + 
+                "Error message: " + error.message + "<br />";
+        $("#dGeolocation").html(html);
+    }
+    
+    getGeolocation();
+});
 
 /*
 $(document).ready(function() {
