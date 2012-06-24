@@ -81,6 +81,32 @@ $('#node-aa-show-map-list').live("click",function(){
     }).click(function() {
       $('#map_canvas_list').gmap('openInfoWindow', { 'content': marker_content }, this);
     });
+    
+    // Display the own location
+    function getGeolocation()
+    {
+        navigator.geolocation.getCurrentPosition(onGetGeolocationSuccess, onGetGeolocationError);
+    }
+    
+    function onGetGeolocationSuccess(position)
+    {
+      own_position = position;
+      var image = new google.maps.MarkerImage("../../images/area.png");
+        var own_marker_content = '<h3>Eigene Position</h3>';
+                        //+'<a id="get-directions" href="#" data-role="button" data-icon="search">Anfahrt</a>';
+      $('#map_canvas_list').gmap('addMarker', {'position': position.coords.latitude + ',' + position.coords.longitude, 'bounds': true, 'icon': image}).click(function() {
+        $('#map_canvas_list').gmap('openInfoWindow', {'content': own_marker_content}, this);
+      });
+    }
+    
+    function onGetGeolocationError(error)
+    {
+        html = "Error code: " + error.code + "<br />" + 
+                "Error message: " + error.message + "<br />";
+        $("#dGeolocation").html(html);
+    }
+    
+    getGeolocation();
   });
   /*
     if(latitude !== undefined && latitude !== "" && longitude !== undefined && longitude !== "") {

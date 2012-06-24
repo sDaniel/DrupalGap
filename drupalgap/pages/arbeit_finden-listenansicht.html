@@ -4,6 +4,11 @@
     	<h1>Arbeit finden</h1>
     	<a href="filtern.html" data-icon="gear" class="ui-btn-right" id="drupalgap_page_arbeit_finden_button_filtern">Filtern</a>
   	</div><!-- /header -->
+
+    <div data-role="content" class="content">
+        <ul data-role="listview" data-divider-theme="a" data-inset="true" id="drupalgap_page_arbeitsangebote_list"></ul>
+    </div>
+    <div data-role="content" class='map'><div id="map_canvas_list"></div></div><!-- /content -->
   	<div data-role="content" class='buttons'>
       <a id="node-aa-show-map-list" data-role="button" data-transition="fade" data-theme="b" href="#" data-icon="check" data-iconpos="left">
             Kartenansicht
@@ -12,10 +17,6 @@
             Details anzeigen
     	</a>
   	</div>
-    <div data-role="content" class="content">
-        <ul data-role="listview" data-divider-theme="a" data-inset="true" id="drupalgap_page_arbeitsangebote_list"></ul>
-    </div>
-    <div data-role="content" class='map'><div id="map_canvas_list"></div></div><!-- /content -->
     <!--
     <a data-role="button" data-transition="fade" data-theme="b" href="arbeit_finden_kartenansicht.html" data-icon="check" data-iconpos="left">
         Kartenansicht

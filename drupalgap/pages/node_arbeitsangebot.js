@@ -73,6 +73,7 @@ $('#node-aa-show-map').live("click",function(){
             $('#map_canvas').gmap('openInfoWindow', {'content': marker_content }, this);
         });
         
+        // Display the own location
         function getGeolocation()
         {
             navigator.geolocation.getCurrentPosition(onGetGeolocationSuccess, onGetGeolocationError);

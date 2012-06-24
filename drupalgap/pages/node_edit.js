@@ -583,7 +583,7 @@ $('#drupalgap_page_node_edit_fill').live('click',function(){
     var field_stichworte = "Führerschein" // TODO: real field
     
     // Arbeitsort
-    var field_arbeitsort_name = 'Kanzleramt';
+    var field_arbeitsort_name = 'Kanzleramt' + Math.floor((Math.random()*100)+1);
     var field_arbeitsort_street = 'Willy-Brandt-Straße 1';
     var field_arbeitsort_postal_code = '10557';
     var field_arbeitsort_city = 'Berlin';
