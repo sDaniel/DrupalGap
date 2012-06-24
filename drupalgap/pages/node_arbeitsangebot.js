@@ -253,7 +253,7 @@ function drupalgap_page_node_success(drupalgap_page_node) {
         count = parseInt(drupalgap_page_node.comment_count);
         if (count > 0) {
             text = "View " + count + " Comments";
-            if (count == 1) { text = "count + " Kommentare abrufen" }
+            if (count == 1) { text = count + " Kommentare abrufen" }
             $('#drupalgap_page_node_button_comments span').html(text);
         }
         else {
