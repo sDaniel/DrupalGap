@@ -10,7 +10,10 @@ $('#drupalgap_page_user_register').live('pageshow',function(){
     */
   try {
 	    if (drupalgap_user.uid != 0) {
-          alert("Already logged in!");
+          navigator.notification.alert( 'Bereits angemeldet.',  // message
+                                        function() {return false;},         // callback
+                                        'LocalMarket',            // title
+                                        'OK');
           $.mobile.changePage("dashboard.html", "slideup");
         }
   }
@@ -29,18 +32,45 @@ $('#drupalgap_user_register_submit').live('click',function() {
 	  
 	  // Grab name and validate it.
 	  var name = $('#drupalgap_user_register_name').val();
-	  if (!name) { alert('Bitte geben Sie Ihren Benutzernamen ein.'); return false; }
+	  if (!name) { 
+                navigator.notification.alert( 'Bitte geben Sie Ihren Benutzernamen ein.',  // message
+                                             function() {return false;},         // callback
+                                             'LocalMarket',            // title
+                                             'OK');                                          
+                 }
 	  
 	  // Grab mail and validate it.
 	  var mail = $('#drupalgap_user_register_mail').val();
-	  if (!mail) { alert('Bitte geben Sie Ihre E-Mail Adresse ein.'); return false; }
+	  if (!mail) {
+                    navigator.notification.alert( 'Bitte geben Sie Ihre E-Mail Adresse ein.',  // message
+                    function() {return false;},         // callback
+                    'LocalMarket',            // title
+                    'OK');
+                 }
 	  
 	  // Grab passwords, compare and validate. 
 	  var pass = $('#drupalgap_user_register_pass').val();
-	  if (!pass) { alert('Bitte Passwort eingben.'); return false; }
+	  if (!pass) {
+                   navigator.notification.alert( 'Bitte Passwort eingben.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                 }
+                                          
 	  var pass2 = $('#drupalgap_user_register_confirm_pass').val();
-	  if (!pass2) { alert('Bitte Passwort bestätigen.'); return false; }
-	  if (pass != pass2) { alert("Passwords do not match."); return false; }
+	  if (!pass2) { 
+                   navigator.notification.alert( 'Bitte Passwort bestätigen.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                  }
+                                          
+	  if (pass != pass2) { 
+                   navigator.notification.alert( 'Passwörter stimmen nicht überein.',  // message
+                   function() {return false;},         // callback
+                   'LocalMarket',            // title
+                   'OK');
+                         }
 	  
 	  // Build service call options.
 	  //user_registration = drupalgap_services_user_register(name,mail,pass);
@@ -117,12 +147,3 @@ $('#drupalgap_user_register_submit').live('click',function() {
   return false; // stop the click from executing any further
   
 });
-
-
-/*
-$(document).ready(function() {
-    
-    $('#info_register_username').css("background-color","green"); 
-    
-    //$('#info_register_username').popup('open', x_pos, y_pos);
-});*/
