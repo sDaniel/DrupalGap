@@ -223,10 +223,45 @@ $('#get-latlong').live('click',function(){
     getGeolocation();
 });
 
+
 /*
-$(document).ready(function() {
-    
-    $('#info_register_username').css("background-color","green"); 
-    
-    //$('#info_register_username').popup('open', x_pos, y_pos);
-});*/
+ * Arbeitsangebot Beispieldaten einfügen
+ */ 
+$('#user_register_fill').live('click',function(){
+  
+  var name = "Testuser" + Math.floor((Math.random()*1000)+1);
+  var mail = Math.floor((Math.random()*1000)+1);
+  var pass = "test" + Math.floor((Math.random()*100)+1)
+  // Arbeitsort
+  var location_name = 'Kanzleramt';
+  var location_street = 'Willy-Brandt-Straße 1';
+  var location_postal_code = '10557';
+  var location_city = 'Berlin';
+  var location_country = 'de';
+  var location_latitude = '52.520172';
+  var location_longitude = '13.369343';
+
+  $('#drupalgap_user_register_name').val(name);
+  $('#drupalgap_user_register_mail').val(mail + "@trash-mail.com");
+  $('#drupalgap_user_register_pass').val(pass);
+  $('#drupalgap_user_register_confirm_pass').val(pass);
+  // Ort
+  $('#edit-locations-0-name').val(location_name);
+  $('#edit-locations-0-street').val(location_street);
+  $('#edit-locations-0-postal-code').val(location_postal_code);
+  $('#edit-locations-0-city').val(location_city);
+  $('#edit-locations-0-country').val(location_country);
+  $('#edit-locations-0-locpick-user-latitude').val(location_latitude);
+  $('#edit-locations-0-locpick-user-longitude').val(location_longitude);
+  
+  var message = 'Sie können ihre Mail nach dem Absenden des Formulars unter http://www.trash-mail.com/index.php?mail=' 
+                  + encodeURIComponent(mail) + ' abrufen. Ihr Passwort lautet: ' + pass;
+  if (navigator.notification) {
+    navigator.notification.alert(message,  // message
+               function() {return false;},         // callback
+               'Beispieldaten eingegeben',            // title
+               'OK');
+  } else {
+    alert(message);
+  }
+});
