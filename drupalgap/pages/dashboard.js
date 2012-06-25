@@ -1,3 +1,90 @@
+var current_aa;
+var loaded_aa;
+
+function current_aa_update () {
+  current_aa = loaded_aa[0];
+  $("#current_aa_beschreibung").html('<strong>' + current_aa.node.title + '</strong>');
+  $("#current_aa_details a, #current_aa_hide a").attr("id",current_aa.node.nid);
+}
+
+  /**
+   * Aktuelles Angebot
+   * @param refresh
+   * Refresh display of 'Aktuelle Angebote'
+   */
+function get_aktuelle_aa (refresh) {
+  // Clear the current AA.
+  $("#current_aa_beschreibung").html("");
+  $("#current_aa_details a, #current_aa_hide a").attr("id", "");
+
+  views_options = {
+      "path":"views_datasource/drupalgap_page_arbeit_finden_aktuelles_angebot",
+      "load_from_local_storage":"0",
+      "error":function(jqXHR, textStatus, errorThrown) {
+          if (errorThrown) {
+              alert(errorThrown);
+          }
+          else {
+              alert(textStatus);
+          }
+      },
+      "success":function(content) {
+          // If there is any content, add each to the list, otherwise show an
+          // empty message.
+          if ($(content.nodes).length > 0) {
+            loaded_aa = content.nodes;
+            if(refresh) {
+              current_aa_update();
+            }
+          }
+          else {
+              html = "Leider liegen aktuell keine passenden Angebote vor.";
+              $("#current_aa_beschreibung").append($("<strong></strong>",{"html":html}));
+          }
+      },
+  };
+  // Make the service call to retrieve content.
+  drupalgap_views_datasource_retrieve.resource_call(views_options);
+}
+
+$('#current_aa_details a, #current_aa_beschreibung').live("click",function(){
+    // Save a reference to the node id.
+    drupalgap_page_node_nid = $(this).attr('id');
+});
+
+$('#current_aa_hide a').live("click",function(){
+    flag_options = {
+        //"resource_path":"flag/flag.json",
+        //"load_from_local_storage":"0",
+        "flag_name" : "hide_aa",
+        "content_id" : $(this).attr("id"),
+        "uid" : drupalgap_user.uid,
+        "action" : "flag",
+        "error" : function(jqXHR, textStatus, errorThrown) {
+            if (errorThrown) {
+                alert(errorThrown);
+            }
+            else {
+                alert(textStatus);
+            }
+        },
+        "success":function(content) {
+            if (content) {
+              loaded_aa.splice(0, 1); // remove first entry
+              current_aa_update();
+              if (current_aa.length = 0) {
+                get_aktuelle_aa(false);
+              }
+            }
+            else {
+              alert("Leider konnte das Angebot nicht ausgeblendet werden.");
+            }
+        },
+    };
+    // Make the service call to POST the flag.
+    drupalgap_services_flag.resource_call(flag_options);
+});
+
 $('#drupalgap_page_dashboard').live('pagebeforeshow',function(){
 	try {
 		
@@ -8,7 +95,7 @@ $('#drupalgap_page_dashboard').live('pagebeforeshow',function(){
 		
 		// Hide both navbars (logic below will show them).
 		$('#drupalgap_page_dashboard_navbar_anonymous').hide();
-    	$('#drupalgap_page_dashboard_navbar_authenticated').hide();
+    $('#drupalgap_page_dashboard_navbar_authenticated').hide();
 		
 		if (drupalgap_user.uid == 0) { // user is not logged in...
 			$('#drupalgap_page_dashboard_navbar_anonymous').show();
@@ -41,6 +128,8 @@ $('#drupalgap_page_dashboard').live('pagebeforeshow',function(){
 		if (access_content) { $('#drupalgap_button_content').show(); }
 		if (access_comments) { $('#drupalgap_button_comments').show(); }
 		
+    get_aktuelle_aa(true);
+    
 	}
 	catch (error) {
 		console.log("drupalgap_page_dashboard");
